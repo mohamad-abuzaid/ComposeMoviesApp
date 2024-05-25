@@ -18,5 +18,5 @@ interface MoviesDAO {
     fun insertAllMovies(languages: List<MovieEntity>): List<Long>
 
     @Query("SELECT * FROM movies ORDER BY tId")
-    fun getMovies(): Flow<List<MovieEntity>?>
+    fun getMovies(): Flow<List<MovieEntity>>
 }
