@@ -1,5 +1,6 @@
 package me.abuzaid.movies.di
 
+import me.abuzaid.movies.data.AppDatabase
 import org.koin.dsl.module
 
 /**
@@ -7,7 +8,7 @@ import org.koin.dsl.module
  * Email: m.abuzaid.ali@gmail.com
  */
 val databaseModule = module {
-//    single { AppDatabase.getInstance(context = get()) }
-//
-//    single { get<AppDatabase>().placeholderDAO() }
+    single { AppDatabase.getInstance(context = get()) }
+
+    single { get<AppDatabase>().moviesDAO() }
 }
