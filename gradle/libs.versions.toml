@@ -23,8 +23,7 @@ koin_compose = "3.4.6"
 moshi = "1.15.0"
 paging = "3.3.0"
 ktor = "2.3.11"
-sqlite = "2.5.0-SNAPSHOT"
-room = "2.7.0-alpha01"
+room = "2.7.0-alpha02"
 timber = "5.0.1"
 
 [libraries]
@@ -58,9 +57,9 @@ moshi-adapters = { module = "com.squareup.moshi:moshi-adapters", version.ref = "
 moshi-codegen = { module = "com.squareup.moshi:moshi-kotlin-codegen", version.ref = "moshi" }
 
 ## Room
+room-ktx = { module = "androidx.room:room-ktx", version.ref = "room" }
 room-runtime = { module = "androidx.room:room-runtime", version.ref = "room" }
 room-compiler = { module = "androidx.room:room-compiler", version.ref = "room" }
-sqlite-bundled = { module = "androidx.sqlite:sqlite-bundled", version.ref = "sqlite" }
 
 ## Ktor
 ktor-client-core = { module = "io.ktor:ktor-client-core", version.ref = "ktor" }

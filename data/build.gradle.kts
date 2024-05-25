@@ -2,6 +2,7 @@
 plugins {
     alias(libs.plugins.androidLibrary)
     alias(libs.plugins.kotlinAndroid)
+    alias(libs.plugins.ksp)
 }
 apply(from = rootProject.file("gradle/config-properties.gradle"))
 apply(from = rootProject.file("gradle/config-android.gradle"))
@@ -21,8 +22,9 @@ dependencies {
     implementation(libs.ktor.serialization.kotlinx.json)
     implementation(libs.ktor.client.contentNegotiation)
 
+    implementation(libs.room.ktx)
     implementation(libs.room.runtime)
-    implementation(libs.sqlite.bundled)
+    ksp(libs.room.compiler)
 
     implementation(libs.timber)
 }
