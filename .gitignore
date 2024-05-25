@@ -1,7 +1,9 @@
 *.iml
 .gradle
+.idea
 /local.properties
 /.idea/caches
+/.idea/misc.xml
 /.idea/libraries
 /.idea/modules.xml
 /.idea/workspace.xml
@@ -10,6 +12,7 @@
 .DS_Store
 /build
 /captures
+/keystores
 .externalNativeBuild
 .cxx
 local.properties

@@ -4,36 +4,18 @@ plugins {
     alias(libs.plugins.kotlinAndroid)
     alias(libs.plugins.jetbrainsCompose)
 }
+apply(from = rootProject.file("gradle/config-properties.gradle"))
+apply(from = rootProject.file("gradle/config-android.gradle"))
 
 android {
     namespace = "me.abuzaid.movies"
-    compileSdk = libs.versions.android.compileSdk.get().toInt()
 
-    defaultConfig {
-        applicationId = "me.abuzaid.movies"
-        minSdk = libs.versions.android.minSdk.get().toInt()
-        targetSdk = libs.versions.android.targetSdk.get().toInt()
-        versionCode = 1
-        versionName = "1.0"
-
-        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+    buildFeatures {
+        compose = true
     }
 
-    buildTypes {
-        release {
-            isMinifyEnabled = false
-            proguardFiles(
-                getDefaultProguardFile("proguard-android-optimize.txt"),
-                "proguard-rules.pro"
-            )
-        }
-    }
-    compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_11
-        targetCompatibility = JavaVersion.VERSION_11
-    }
-    kotlinOptions {
-        jvmTarget = "11"
+    composeOptions {
+        kotlinCompilerExtensionVersion = "1.6.2"
     }
 }
 
