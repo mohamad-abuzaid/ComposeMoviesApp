@@ -1,14 +1,20 @@
 package me.abuzaid.movies
 
 import android.app.Application
+import me.abuzaid.movies.di.databaseModule
+import me.abuzaid.movies.di.miscModule
+import me.abuzaid.movies.di.repositoriesModule
+import me.abuzaid.movies.di.servicesModule
+import me.abuzaid.movies.di.useCasesModule
+import me.abuzaid.movies.di.viewModelsModule
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
 import org.koin.core.context.startKoin
 import timber.log.Timber
 
 /**
- * Created by "Mohamad Abuzaid" on 06/05/2023.
- * Email: mabuzaid@sure.com.sa
+ * Created by "Mohamad Abuzaid" on 25/05/2024.
+ * Email: m.abuzaid.ali@gmail.com
  */
 class MainApplication : Application() {
 
@@ -30,7 +36,6 @@ class MainApplication : Application() {
                     miscModule,
                     databaseModule,
                     viewModelsModule,
-                    loginModule,
                     useCasesModule,
                     repositoriesModule,
                     servicesModule
