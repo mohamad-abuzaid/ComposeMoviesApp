@@ -22,13 +22,13 @@ android {
 dependencies {
     implementation(project(":domain"))
 
-    implementation(compose.runtime)
-    implementation(compose.foundation)
-    implementation(compose.material)
-    implementation(compose.material3)
-    implementation(compose.ui)
-    implementation(compose.components.resources)
-    implementation(compose.components.uiToolingPreview)
+    implementation(platform(libs.compose.bom))
+    implementation(libs.compose.ui)
+    implementation(libs.compose.material)
+    implementation(libs.compose.material3)
+    implementation(libs.compose.ui.tooling.preview)
+    debugImplementation(libs.compose.ui.tooling)
+    debugImplementation(libs.compose.ui.test.manifest)
 
     implementation(libs.timber)
 }
