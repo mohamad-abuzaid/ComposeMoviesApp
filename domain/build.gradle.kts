@@ -25,4 +25,6 @@ dependencies {
     api(libs.moshi.kotlin)
     api(libs.moshi.adapters)
     ksp(libs.moshi.codegen)
+
+    implementation(libs.timber)
 }
