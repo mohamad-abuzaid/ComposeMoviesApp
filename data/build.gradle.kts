@@ -86,8 +86,8 @@ dependencies {
     implementation(libs.ktor.serialization.kotlinx.json)
     implementation(libs.ktor.client.contentNegotiation)
 
-    implementation(libs.room.ktx)
-    implementation(libs.room.runtime)
+    api(libs.room.ktx)
+    api(libs.room.runtime)
     ksp(libs.room.compiler)
 
     implementation(libs.timber)
