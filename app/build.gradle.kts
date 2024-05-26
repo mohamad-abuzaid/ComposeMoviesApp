@@ -19,29 +19,6 @@ android {
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
 
-    buildTypes {
-        getByName("release") {
-            isMinifyEnabled = false
-            //shrinkResources = true
-            isDebuggable = false
-            proguardFiles(getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro")
-            ndk {
-                debugSymbolLevel = "FULL"
-            }
-        }
-
-        create("staging") {
-            isDebuggable = true
-            proguardFiles(getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro")
-            matchingFallbacks += listOf("release", "debug")
-        }
-
-        getByName("debug") {
-            isDebuggable = true
-            extra["enableCrashlytics"] = false
-        }
-    }
-
     packaging {
         resources.excludes += listOf(
             "META-INF/*.kotlin_module",
@@ -90,6 +67,4 @@ dependencies {
     debugImplementation(libs.compose.ui.test.manifest)
 
     implementation(libs.paging.compose)
-
-    implementation(libs.timber)
 }
