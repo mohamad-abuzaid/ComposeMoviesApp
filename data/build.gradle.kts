@@ -5,6 +5,7 @@ import java.util.Properties
 plugins {
     alias(libs.plugins.androidLibrary)
     alias(libs.plugins.kotlinAndroid)
+    alias(libs.plugins.kotlinSerialization)
     alias(libs.plugins.ksp)
 }
 
@@ -78,7 +79,7 @@ android {
 dependencies {
     api(project(":domain"))
 
-    implementation(libs.ktor.client.core)
+    api(libs.ktor.client.core)
     implementation(libs.ktor.client.android)
     implementation(libs.ktor.client.contentNegotiation)
     implementation(libs.ktor.client.logging)
