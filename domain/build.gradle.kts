@@ -13,25 +13,6 @@ android {
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
 
-    buildTypes {
-        getByName("release") {
-            isMinifyEnabled = false
-            proguardFiles(getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro")
-            ndk {
-                debugSymbolLevel = "FULL"
-            }
-        }
-
-        create("staging") {
-            proguardFiles(getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro")
-            matchingFallbacks += listOf("release", "debug")
-        }
-
-        getByName("debug") {
-            extra["enableCrashlytics"] = false
-        }
-    }
-
     buildFeatures {
         buildConfig = true
     }
@@ -60,5 +41,5 @@ dependencies {
 
     implementation(libs.paging.runtime)
 
-    implementation(libs.timber)
+    api(libs.timber)
 }

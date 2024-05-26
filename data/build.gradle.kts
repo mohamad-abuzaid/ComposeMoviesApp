@@ -35,28 +35,8 @@ android {
     }
 
     buildTypes {
-        getByName("release") {
-            isMinifyEnabled = false
+        all {
             proguardFiles(getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro")
-            ndk {
-                debugSymbolLevel = "FULL"
-            }
-
-            buildConfigField("String", "BASE_URL", "\"${config.commonProperties["base_url"]}\"")
-            buildConfigField("String", "API_KEY", "\"${config.commonProperties["api"]}\"")
-        }
-
-        create("staging") {
-            proguardFiles(getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro")
-            matchingFallbacks += listOf("release", "debug")
-
-            buildConfigField("String", "BASE_URL", "\"${config.commonProperties["base_url"]}\"")
-            buildConfigField("String", "API_KEY", "\"${config.commonProperties["api"]}\"")
-        }
-
-        getByName("debug") {
-            extra["enableCrashlytics"] = false
-
             buildConfigField("String", "BASE_URL", "\"${config.commonProperties["base_url"]}\"")
             buildConfigField("String", "API_KEY", "\"${config.commonProperties["api"]}\"")
         }
@@ -89,6 +69,4 @@ dependencies {
     ksp(libs.room.compiler)
 
     implementation(libs.paging.room)
-
-    implementation(libs.timber)
 }
