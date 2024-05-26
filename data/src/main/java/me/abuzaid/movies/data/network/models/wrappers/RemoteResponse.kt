@@ -9,7 +9,7 @@ import kotlinx.serialization.Serializable
  */
 @Serializable
 data class RemoteResponse<T>(
-    @SerialName("id")
+    @SerialName("page")
     val page: Int?,
     @SerialName("total_pages")
     val totalPages: Int?,

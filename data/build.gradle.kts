@@ -5,7 +5,6 @@ import java.util.Properties
 plugins {
     alias(libs.plugins.androidLibrary)
     alias(libs.plugins.kotlinAndroid)
-    alias(libs.plugins.kotlinSerialization)
     alias(libs.plugins.ksp)
 }
 
