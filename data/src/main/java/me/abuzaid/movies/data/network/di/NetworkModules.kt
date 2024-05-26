@@ -1,5 +1,6 @@
 package me.abuzaid.movies.data.network.di
 
+import io.ktor.client.HttpClient
 import me.abuzaid.movies.data.BuildConfig
 import me.abuzaid.movies.data.network.factory.KtorClientFactory
 import org.koin.core.qualifier.named
@@ -13,7 +14,7 @@ val networkModule = module {
     single(named("dataBaseUrl")) { BuildConfig.BASE_URL }
     single(named("accessToken")) { BuildConfig.TOKEN }
 
-    single {
+    single<HttpClient> {
         KtorClientFactory.getInstance(
             baseUrl = get(named("dataBaseUrl")),
             token = get(named("accessToken"))

@@ -1,6 +1,8 @@
 package me.abuzaid.movies.di
 
+import io.ktor.client.HttpClient
 import me.abuzaid.movies.data.network.di.networkModule
+import me.abuzaid.movies.data.network.services.ApiServices
 import org.koin.dsl.module
 
 /**
@@ -10,5 +12,5 @@ import org.koin.dsl.module
 val servicesModule = module {
     includes(networkModule)
 
-//    single<MoviesApiService> { get<Ktor>().create(MoviesApiService::class.java) }
+    single { ApiServices(get<HttpClient>()) }
 }
