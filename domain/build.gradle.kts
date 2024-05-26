@@ -58,6 +58,7 @@ dependencies {
     api(libs.kotlin.test)
 
     api(libs.ktor.client.serialization)
+    api(libs.kotlin.serialization)
 
     implementation(libs.paging.runtime)
 
