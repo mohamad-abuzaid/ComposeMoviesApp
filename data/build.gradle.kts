@@ -43,6 +43,7 @@ android {
 
             buildConfigField("String", "BASE_URL", "\"${config.commonProperties["base_url"]}\"")
             buildConfigField("String", "API_KEY", "\"${config.commonProperties["api"]}\"")
+            buildConfigField("String", "TOKEN", "\"${config.commonProperties["token"]}\"")
         }
 
         create("staging") {
@@ -51,6 +52,7 @@ android {
 
             buildConfigField("String", "BASE_URL", "\"${config.commonProperties["base_url"]}\"")
             buildConfigField("String", "API_KEY", "\"${config.commonProperties["api"]}\"")
+            buildConfigField("String", "TOKEN", "\"${config.commonProperties["token"]}\"")
         }
 
         getByName("debug") {
@@ -58,6 +60,7 @@ android {
 
             buildConfigField("String", "BASE_URL", "\"${config.commonProperties["base_url"]}\"")
             buildConfigField("String", "API_KEY", "\"${config.commonProperties["api"]}\"")
+            buildConfigField("String", "TOKEN", "\"${config.commonProperties["token"]}\"")
         }
     }
 
