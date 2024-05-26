@@ -2,7 +2,6 @@
 plugins {
     alias(libs.plugins.androidLibrary)
     alias(libs.plugins.kotlinAndroid)
-    alias(libs.plugins.ksp)
 }
 
 android {
@@ -57,10 +56,7 @@ dependencies {
     api(libs.koin.compose)
     api(libs.kotlin.test)
 
-    api(libs.moshi.core)
-    api(libs.moshi.kotlin)
-    api(libs.moshi.adapters)
-    ksp(libs.moshi.codegen)
+    api(libs.ktor.client.serialization)
 
     implementation(libs.timber)
 }
