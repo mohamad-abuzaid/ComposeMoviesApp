@@ -59,5 +59,7 @@ dependencies {
 
     api(libs.ktor.client.serialization)
 
+    implementation(libs.paging.runtime)
+
     implementation(libs.timber)
 }
