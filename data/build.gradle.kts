@@ -82,9 +82,9 @@ dependencies {
     api(project(":domain"))
 
     implementation(libs.ktor.client.core)
-    implementation(libs.ktor.client.okhttp)
+    implementation(libs.ktor.client.android)
     implementation(libs.ktor.client.contentNegotiation)
-    implementation(libs.ktor.serialization.moshi)
+    implementation(libs.ktor.client.logging)
 
     api(libs.room.ktx)
     api(libs.room.runtime)
