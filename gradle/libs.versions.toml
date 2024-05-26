@@ -39,6 +39,11 @@ compose-ui-tooling-preview = { module = "androidx.compose.ui:ui-tooling-preview"
 compose-ui-tooling = { module = "androidx.compose.ui:ui-tooling" }
 compose-ui-test-manifest = { module = "androidx.compose.ui:ui-test-manifest" }
 
+## Paging
+paging-runtime = { module = "androidx.paging:paging-runtime", version.ref = "paging" }
+paging-compose = { module = "androidx.paging:paging-compose", version.ref = "paging" }
+paging-room = { module = "androidx.room:room-paging", version.ref = "room" }
+
 ## Coroutines
 coroutines-core = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version.ref = "coroutines" }
 coroutines-android = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-android", version.ref = "coroutines" }
