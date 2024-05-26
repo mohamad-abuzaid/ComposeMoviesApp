@@ -18,7 +18,7 @@ Compose-Movies-App is a Kotlin Compose application designed to bridge the gap be
 - **Coroutines & Flow**
 - **Room (Database)**
 - **Ktor (Networking)**
-- **Moshi (JSON parser)**
+- **Ktor Kotlin Serializer (JSON parser)**
 - **Koin (DI)**
 - **Image Loader**
 
