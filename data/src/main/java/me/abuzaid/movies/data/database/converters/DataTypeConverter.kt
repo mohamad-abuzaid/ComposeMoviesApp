@@ -12,6 +12,25 @@ import timber.log.Timber
 class DataTypeConverter {
 
     @TypeConverter
+    fun fromIntList(value: List<Int>?): String {
+        return value?.let { Json.encodeToString(it) } ?: ""
+    }
+
+    @TypeConverter
+    fun toIntList(value: String): List<Int>? {
+
+        return try {
+            Json.decodeFromString(value)
+        } catch (ex: Exception) {
+            Timber.tag("DataTypeConverter").e(ex)
+            null
+        }
+    }
+
+    /*************************/
+    /*************************/
+
+    @TypeConverter
     fun fromMap(value: Map<String, String>?): String {
         return value?.let { Json.encodeToString(it) } ?: ""
     }

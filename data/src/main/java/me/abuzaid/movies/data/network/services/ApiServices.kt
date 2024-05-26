@@ -1,7 +1,10 @@
 package me.abuzaid.movies.data.network.services
 
 import io.ktor.client.HttpClient
+import io.ktor.client.call.body
 import io.ktor.client.request.get
+import me.abuzaid.movies.data.network.models.MovieRemote
+import me.abuzaid.movies.data.network.models.wrappers.RemoteResponse
 
 /**
  * Created by "Mohamad Abuzaid" on 26/05/2024.
@@ -13,5 +16,5 @@ class ApiServices(private val client: HttpClient) {
         private const val FETCH_MOVIES = "discover/movie"
     }
 
-    suspend fun fetchMovies() = client.get(FETCH_MOVIES)
+    suspend fun fetchMovies():RemoteResponse<List<MovieRemote>> = client.get(FETCH_MOVIES).body()
 }
