@@ -88,5 +88,7 @@ dependencies {
     api(libs.room.runtime)
     ksp(libs.room.compiler)
 
+    implementation(libs.paging.room)
+
     implementation(libs.timber)
 }
