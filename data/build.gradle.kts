@@ -80,11 +80,8 @@ dependencies {
 
     implementation(libs.ktor.client.core)
     implementation(libs.ktor.client.okhttp)
-    implementation(libs.ktor.client.json)
-    implementation(libs.ktor.client.logging)
-    implementation(libs.ktor.client.serialization)
-    implementation(libs.ktor.serialization.kotlinx.json)
     implementation(libs.ktor.client.contentNegotiation)
+    implementation(libs.ktor.serialization.moshi)
 
     api(libs.room.ktx)
     api(libs.room.runtime)
