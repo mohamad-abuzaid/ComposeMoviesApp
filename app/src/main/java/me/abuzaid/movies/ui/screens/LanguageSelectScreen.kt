@@ -74,7 +74,7 @@ fun LanguageSelectScreen(
                 color = Color.White
             )
 
-            Spacer(Modifier.height(10.dp))
+            Spacer(Modifier.height(25.dp))
             Text(
                 stringResource(R.string.language_subtitle_ar),
                 style = MaterialTheme.typography.displayMedium,

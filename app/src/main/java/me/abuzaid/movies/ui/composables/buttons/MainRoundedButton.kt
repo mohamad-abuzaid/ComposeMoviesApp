@@ -1,5 +1,6 @@
 package me.abuzaid.movies.ui.composables.buttons
 
+import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
@@ -31,9 +32,13 @@ fun MainRoundedButton(
             .height(55.dp)
             .clip(RoundedCornerShape(50.dp)),
         onClick = onClick,
+        border = BorderStroke(
+            2.dp,
+            MaterialTheme.colorScheme.tertiary
+        ),
         colors = ButtonDefaults.buttonColors(
             contentColor = Color.White,
-            containerColor = MaterialTheme.colorScheme.secondary,
+            containerColor = MaterialTheme.colorScheme.background,
         ),
     ) {
         Text(

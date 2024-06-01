@@ -121,8 +121,8 @@ private fun RoundedRadioButtonWithSelectionStroke(
                 onOptionSelected(text)
             },
             colors = RadioButtonDefaults.colors(
-                selectedColor = MaterialTheme.colorScheme.secondary,
-                unselectedColor = MaterialTheme.colorScheme.secondary,
+                selectedColor = MaterialTheme.colorScheme.background,
+                unselectedColor = MaterialTheme.colorScheme.background,
             ),
         )
         Spacer(modifier = Modifier.height(40.dp))
