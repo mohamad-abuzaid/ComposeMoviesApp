@@ -13,7 +13,7 @@ fun NavGraphBuilder.mainNavGraph(
 ) {
     navigation(
         route = Graph.MAIN,
-        startDestination = MainScreens.SplashScreen.route
+        startDestination = MainScreens.Splash.route
     ) {
 
     }
