@@ -4,6 +4,7 @@ import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.composable
 import androidx.navigation.navigation
+import me.abuzaid.movies.ui.screens.LanguageSelectScreen
 import me.abuzaid.movies.ui.screens.SplashScreen
 import me.abuzaid.movies.utils.storage.ILocalPreferencesStorage
 import org.koin.compose.koinInject
@@ -23,6 +24,12 @@ fun NavGraphBuilder.mainNavGraph(
             val prefs: ILocalPreferencesStorage = koinInject()
 
             SplashScreen(navController, prefs)
+        }
+
+        composable(route = MainScreens.LanguageSelect.route) {
+            val prefs: ILocalPreferencesStorage = koinInject()
+
+            LanguageSelectScreen(navController, prefs)
         }
     }
 }
