@@ -62,6 +62,9 @@ dependencies {
     implementation(libs.compose.icons)
     implementation(libs.compose.icons.extended)
     implementation(libs.compose.ui.tooling.preview)
+    implementation(libs.androidx.appcompat)
+    implementation(libs.material)
+    implementation(libs.androidx.activity)
     debugImplementation(libs.compose.ui.tooling)
     debugImplementation(libs.compose.ui.test.manifest)
 

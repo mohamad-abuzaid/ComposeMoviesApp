@@ -22,6 +22,9 @@ paging = "3.3.0"
 ktor = "2.3.11"
 room = "2.7.0-alpha03"
 timber = "5.0.1"
+appcompat = "1.7.0"
+material = "1.12.0"
+activity = "1.9.0"
 
 [libraries]
 timber = { module = "com.jakewharton.timber:timber", version.ref = "timber" }
@@ -70,6 +73,9 @@ kotlin-test-junit = { module = "org.jetbrains.kotlin:kotlin-test-junit", version
 junit = { group = "junit", name = "junit", version.ref = "junit" }
 androidx-test-junit = { group = "androidx.test.ext", name = "junit", version.ref = "androidx-test-junit" }
 androidx-espresso-core = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "androidx-espresso-core" }
+androidx-appcompat = { group = "androidx.appcompat", name = "appcompat", version.ref = "appcompat" }
+material = { group = "com.google.android.material", name = "material", version.ref = "material" }
+androidx-activity = { group = "androidx.activity", name = "activity", version.ref = "activity" }
 
 [plugins]
 androidApplication = { id = "com.android.application", version.ref = "agp" }

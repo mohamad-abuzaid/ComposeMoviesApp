@@ -33,11 +33,11 @@ class MainApplication : Application() {
             // Declare modules
             modules(
                 listOf(
-                    miscModule,
-                    databaseModule,
                     viewModelsModule,
+                    miscModule,
                     useCasesModule,
                     repositoriesModule,
+                    databaseModule,
                     servicesModule
                 )
             )

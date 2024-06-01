@@ -11,6 +11,4 @@ import org.koin.dsl.module
 val miscModule = module {
     single(named("ioDispatcher")) { Dispatchers.IO }
     single(named("defaultDispatcher")) { Dispatchers.Default }
-
-//    single<ILocalPreferencesStorage> { PreferencesStorage(context = get()) }
 }
