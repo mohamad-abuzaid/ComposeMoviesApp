@@ -34,9 +34,9 @@ class MainApplication : Application() {
             modules(
                 listOf(
                     viewModelsModule,
-                    miscModule,
                     useCasesModule,
                     repositoriesModule,
+                    miscModule,
                     databaseModule,
                     servicesModule
                 )
