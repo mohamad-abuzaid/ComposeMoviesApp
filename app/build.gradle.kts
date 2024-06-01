@@ -55,19 +55,19 @@ dependencies {
     implementation(project(":domain"))
     implementation(project(":di"))
 
+    implementation(libs.androidx.appcompat)
+    implementation(libs.material)
+    implementation(libs.androidx.activity)
+
     implementation(platform(libs.compose.bom))
     implementation(libs.compose.ui)
     implementation(libs.compose.navigation)
+    implementation(libs.paging.compose)
     implementation(libs.compose.material)
     implementation(libs.compose.material3)
     implementation(libs.compose.icons)
     implementation(libs.compose.icons.extended)
     implementation(libs.compose.ui.tooling.preview)
-    implementation(libs.androidx.appcompat)
-    implementation(libs.material)
-    implementation(libs.androidx.activity)
     debugImplementation(libs.compose.ui.tooling)
     debugImplementation(libs.compose.ui.test.manifest)
-
-    implementation(libs.paging.compose)
 }
