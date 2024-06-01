@@ -58,8 +58,6 @@ fun LanguageSelectScreen(
     }
 
     ScreenPage(
-        modifier = Modifier
-            .background(color = MaterialTheme.colorScheme.background),
         onRefresh = { }
     ) {
         Column(
@@ -113,7 +111,7 @@ fun LanguageSelectScreen(
     }
 }
 
-@Preview(showSystemUi = false, showBackground = true, locale = "ar")
+@Preview(showSystemUi = false, showBackground = true, locale = "en")
 @Composable
 fun PreviewLanguageSelectScreen() {
     LanguageSelectScreen(

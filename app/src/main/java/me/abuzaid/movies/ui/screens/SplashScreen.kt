@@ -49,7 +49,7 @@ fun SplashScreen(
     }
 }
 
-@Preview(showSystemUi = false, showBackground = true, locale = "ar")
+@Preview(showSystemUi = false, showBackground = true, locale = "en")
 @Composable
 fun PreviewSplashScreenScreen() {
     SplashScreen(
