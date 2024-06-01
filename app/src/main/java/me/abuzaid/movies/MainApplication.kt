@@ -5,6 +5,7 @@ import me.abuzaid.movies.di.databaseModule
 import me.abuzaid.movies.di.miscModule
 import me.abuzaid.movies.di.repositoriesModule
 import me.abuzaid.movies.di.servicesModule
+import me.abuzaid.movies.di.storageModule
 import me.abuzaid.movies.di.useCasesModule
 import me.abuzaid.movies.di.viewModelsModule
 import org.koin.android.ext.koin.androidContext
@@ -33,6 +34,7 @@ class MainApplication : Application() {
             // Declare modules
             modules(
                 listOf(
+                    storageModule,
                     viewModelsModule,
                     useCasesModule,
                     repositoriesModule,
