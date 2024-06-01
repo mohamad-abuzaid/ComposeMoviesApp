@@ -2,7 +2,11 @@ package me.abuzaid.movies.navigation
 
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavHostController
+import androidx.navigation.compose.composable
 import androidx.navigation.navigation
+import me.abuzaid.movies.ui.screens.SplashScreen
+import me.abuzaid.movies.utils.storage.ILocalPreferencesStorage
+import org.koin.compose.koinInject
 
 /**
  * Created by "Mohamad Abuzaid" on 01/06/2024.
@@ -15,6 +19,10 @@ fun NavGraphBuilder.mainNavGraph(
         route = Graph.MAIN,
         startDestination = MainScreens.Splash.route
     ) {
+        composable(route = MainScreens.Splash.route) {
+            val prefs: ILocalPreferencesStorage = koinInject()
 
+            SplashScreen(navController, prefs)
+        }
     }
 }
