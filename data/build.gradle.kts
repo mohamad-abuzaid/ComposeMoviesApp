@@ -5,7 +5,7 @@ import java.util.Properties
 plugins {
     alias(libs.plugins.androidLibrary)
     alias(libs.plugins.kotlinAndroid)
-    id("kotlinx-serialization")
+    alias(libs.plugins.kotlinSerialization)
     alias(libs.plugins.ksp)
 }
 

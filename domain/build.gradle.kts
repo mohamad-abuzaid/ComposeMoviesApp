@@ -2,7 +2,7 @@
 plugins {
     alias(libs.plugins.androidLibrary)
     alias(libs.plugins.kotlinAndroid)
-    id("kotlinx-serialization")
+    alias(libs.plugins.kotlinSerialization)
 }
 
 android {
@@ -38,8 +38,6 @@ dependencies {
     api(libs.koin.compose)
 
     api(libs.ktor.client.serialization)
-    api(libs.ktor.kotlinx.serialization)
-    api(libs.kotlin.serialization)
 
     implementation(libs.paging.runtime)
 
