@@ -9,6 +9,7 @@ android-version-name = "1.0"
 androidx-espresso-core = "3.5.1"
 androidx-test-junit = "1.1.5"
 compose = "2024.05.00"
+nav_compose = "2.7.7"
 compose-compiler = "1.5.14"
 junit = "4.13.2"
 kotlin = "2.0.0"
@@ -29,6 +30,7 @@ timber = { module = "com.jakewharton.timber:timber", version.ref = "timber" }
 ## Compose
 compose-bom = { module = "androidx.compose:compose-bom", version.ref = "compose" }
 compose-ui = { module = "androidx.compose.ui:ui" }
+compose-navigation = { module = "androidx.navigation:navigation-compose", version.ref = "nav_compose" }
 compose-material = { module = "androidx.compose.material:material" }
 compose-material3 = { module = "androidx.compose.material3:material3" }
 compose-icons = { module = "androidx.compose.material:material-icons-core" }
