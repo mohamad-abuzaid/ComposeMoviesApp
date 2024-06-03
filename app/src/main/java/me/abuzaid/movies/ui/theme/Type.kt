@@ -38,7 +38,19 @@ val Typography = Typography(
     titleMedium = TextStyle(
         fontFamily = axiforma,
         fontWeight = FontWeight.Normal,
+        fontSize = 18.sp
+    ),
+
+    titleSmall = TextStyle(
+        fontFamily = axiforma,
+        fontWeight = FontWeight.Normal,
         fontSize = 16.sp
+    ),
+
+    labelLarge = TextStyle(
+        fontFamily = axiforma,
+        fontWeight = FontWeight.Bold,
+        fontSize = 14.sp
     )
 
 )

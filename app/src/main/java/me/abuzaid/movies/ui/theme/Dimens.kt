@@ -11,7 +11,7 @@ const val DivWidth = 3f
 
 /***** Cards ****/
 val Elevation = 10.dp
-val Corner = 12.dp
+val Corner = 25.dp
 
 /***** Paddings ****/
 val CardPadding = 15.dp
