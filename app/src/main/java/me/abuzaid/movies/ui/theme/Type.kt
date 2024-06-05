@@ -51,6 +51,11 @@ val Typography = Typography(
         fontFamily = axiforma,
         fontWeight = FontWeight.Bold,
         fontSize = 14.sp
-    )
+    ),
 
+            labelMedium = TextStyle(
+            fontFamily = axiforma,
+    fontWeight = FontWeight.Normal,
+    fontSize = 14.sp
+)
 )
