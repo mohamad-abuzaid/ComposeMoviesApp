@@ -2,14 +2,17 @@ package me.abuzaid.movies.ui.composables
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.wrapContentSize
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import coil.compose.SubcomposeAsyncImage
@@ -25,12 +28,17 @@ fun MovieItem(
     movieItem: MovieDisplay
 ) {
     Column(
-        modifier = Modifier.wrapContentSize(),
+        modifier = Modifier
+            .wrapContentSize()
+            .padding(10.dp),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         SubcomposeAsyncImage(
-            modifier = Modifier.width(180.dp),
+            modifier = Modifier
+                .size(100.dp)
+                .clip(shape = RoundedCornerShape(12.dp)),
             model = movieItem.posterPath,
+            contentScale = ContentScale.FillBounds,
             loading = { CircularProgressIndicator() },
             contentDescription = "Movie Image",
         )

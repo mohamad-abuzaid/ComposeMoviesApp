@@ -4,6 +4,7 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
@@ -126,14 +127,16 @@ fun HomeScreen(
             val items = Dummy.movies
 
             LazyVerticalGrid(
+                modifier = Modifier.fillMaxSize(),
                 columns = GridCells.Fixed(3),
-                modifier = Modifier.fillMaxSize()
+                contentPadding = PaddingValues(10.dp),
+                verticalArrangement = Arrangement.spacedBy(10.dp),
+                horizontalArrangement = Arrangement.SpaceBetween
             ) {
                 items(items.size) { index ->
                     MovieItem(movieItem = items[index])
                 }
             }
-
         }
     }
 }
