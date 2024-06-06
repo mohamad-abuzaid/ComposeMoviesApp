@@ -20,7 +20,7 @@ Compose-Movies-App is a Kotlin Compose application designed to bridge the gap be
 - **Ktor (Networking)**
 - **Ktor Kotlin Serializer (JSON parser)**
 - **Koin (DI)**
-- **Image Loader**
+- **Coil (Image Loader)**
 
 ## API & Design File:
 - Design: https://www.figma.com/file/vI6BpWMy3p02hogoFc7R08/App-Anime-%26-Movies-NEON-MODE-(Community)
