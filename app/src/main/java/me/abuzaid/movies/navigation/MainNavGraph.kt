@@ -18,7 +18,7 @@ fun NavGraphBuilder.mainNavGraph(
     navigation<MAIN>(
         startDestination = MainScreens.Splash
     ) {
-        composable(route = MainScreens.Splash.route) {
+        composable<MainScreens.Splash> {
             val prefs: ILocalPreferencesStorage = koinInject()
 
             SplashScreen(navController, prefs)
