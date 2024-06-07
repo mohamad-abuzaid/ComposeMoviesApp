@@ -32,7 +32,7 @@ fun NavGraphBuilder.mainNavGraph(
             LanguageSelectScreen(navController, prefs)
         }
 
-        composable(route = MainScreens.Home.route) {
+        composable<MainScreens.Home> {
             HomeScreen(navController)
         }
     }
