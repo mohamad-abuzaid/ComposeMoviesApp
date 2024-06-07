@@ -10,7 +10,7 @@ import java.net.UnknownHostException
 
 /**
  * Created by "Mohamad Abuzaid" on 26/05/2024.
- * Email: mabuzaid@sure.com.sa
+ * Email: m.abuzaid.ali@gmail.com
  */
 class CustomError(code: Int, errorMessage: String, errorDetails: String) :
     CallFailure(
