@@ -11,7 +11,7 @@ import androidx.navigation.navigation
 fun NavGraphBuilder.mainNavGraph(
     navController: NavHostController,
 ) {
-    navigation<MainScreens.Splash>(
+    navigation<MAIN>(
         startDestination = MainScreens.Splash
     ) {
 

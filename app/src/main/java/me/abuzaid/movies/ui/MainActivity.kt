@@ -6,6 +6,7 @@ import androidx.compose.runtime.CompositionLocalProvider
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.rememberNavController
+import me.abuzaid.movies.navigation.MAIN
 import me.abuzaid.movies.navigation.MainScreens
 import me.abuzaid.movies.navigation.mainNavGraph
 import me.abuzaid.movies.ui.base.BaseActivity
@@ -35,7 +36,7 @@ class MainActivity : BaseActivity() {
                 LocalLang provides lang
             ) {
                 MoviesTheme {
-                    NavHost(navController = navController, startDestination = MainScreens.Splash) {
+                    NavHost(navController = navController, startDestination = MAIN) {
                         mainNavGraph(navController)
                     }
                 }
