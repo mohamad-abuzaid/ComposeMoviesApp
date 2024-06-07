@@ -15,7 +15,7 @@ import org.koin.compose.koinInject
 fun NavGraphBuilder.mainNavGraph(
     navController: NavHostController,
 ) {
-    navigation<MainScreens.Splash>(
+    navigation<MAIN>(
         startDestination = MainScreens.Splash
     ) {
         composable(route = MainScreens.Splash.route) {
