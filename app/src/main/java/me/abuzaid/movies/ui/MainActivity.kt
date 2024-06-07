@@ -2,12 +2,12 @@ package me.abuzaid.movies.ui
 
 import android.os.Bundle
 import androidx.activity.compose.setContent
-import androidx.appcompat.app.AppCompatActivity
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.rememberNavController
-import me.abuzaid.movies.navigation.Graph
+import me.abuzaid.movies.navigation.MAIN
+import me.abuzaid.movies.navigation.MainScreens
 import me.abuzaid.movies.navigation.mainNavGraph
 import me.abuzaid.movies.ui.base.BaseActivity
 import me.abuzaid.movies.ui.theme.MoviesTheme
@@ -36,7 +36,7 @@ class MainActivity : BaseActivity() {
                 LocalLang provides lang
             ) {
                 MoviesTheme {
-                    NavHost(navController = navController, startDestination = Graph.MAIN) {
+                    NavHost(navController = navController, startDestination = MAIN) {
                         mainNavGraph(navController)
                     }
                 }
