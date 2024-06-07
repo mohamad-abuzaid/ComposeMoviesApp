@@ -15,9 +15,8 @@ import org.koin.compose.koinInject
 fun NavGraphBuilder.mainNavGraph(
     navController: NavHostController,
 ) {
-    navigation(
-        route = Graph.MAIN,
-        startDestination = MainScreens.Splash.route
+    navigation<MainScreens.Splash>(
+        startDestination = MainScreens.Splash
     ) {
         composable(route = MainScreens.Splash.route) {
             val prefs: ILocalPreferencesStorage = koinInject()
