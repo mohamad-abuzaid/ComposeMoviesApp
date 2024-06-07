@@ -107,7 +107,7 @@ fun LanguageSelectScreen(
                 text = stringResource(R.string.save)
             ) {
                 prefs?.putBoolean(Preference.FIRST_TIME_LAUNCH, false)
-                navController.navigate(route = MainScreens.Home.route)
+                navController.navigate(MainScreens.Home)
             }
         }
     }

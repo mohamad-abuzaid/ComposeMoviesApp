@@ -42,9 +42,9 @@ fun SplashScreen(
     LaunchedEffect(key1 = currentTime) {
         delay(3000)
         if (firstTime) {
-            navController.navigate(route = MainScreens.LanguageSelect.route)
+            navController.navigate(MainScreens.LanguageSelect)
         } else {
-            navController.navigate(route = MainScreens.Home.route)
+            navController.navigate(MainScreens.Home)
         }
     }
 }

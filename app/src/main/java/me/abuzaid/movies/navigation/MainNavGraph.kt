@@ -25,7 +25,7 @@ fun NavGraphBuilder.mainNavGraph(
             SplashScreen(navController, prefs)
         }
 
-        composable(route = MainScreens.LanguageSelect.route) {
+        composable<MainScreens.LanguageSelect> {
             val prefs: ILocalPreferencesStorage = koinInject()
 
             LanguageSelectScreen(navController, prefs)
