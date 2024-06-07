@@ -16,6 +16,7 @@ import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
+import androidx.compose.foundation.lazy.grid.items
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -30,10 +31,12 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import me.abuzaid.movies.R
+import me.abuzaid.movies.navigation.MainScreens
 import me.abuzaid.movies.ui.composables.MovieItem
 import me.abuzaid.movies.ui.composables.inputfields.InputTextField
 import me.abuzaid.movies.ui.composables.pages.ScreenPage
 import me.abuzaid.movies.utils.Dummy
+import java.net.URLEncoder
 
 /**
  * Created by "Mohamad Abuzaid" on 01/06/2024.
@@ -129,12 +132,18 @@ fun HomeScreen(
             LazyVerticalGrid(
                 modifier = Modifier.fillMaxSize(),
                 columns = GridCells.Fixed(3),
-                contentPadding = PaddingValues(10.dp),
                 verticalArrangement = Arrangement.spacedBy(10.dp),
                 horizontalArrangement = Arrangement.SpaceBetween
             ) {
-                items(items.size) { index ->
-                    MovieItem(movieItem = items[index])
+                items(items) { movie ->
+                    MovieItem(
+                        movieItem = movie
+                    ){
+                        val encodedUrl = URLEncoder.encode(movie.posterPath, "utf-8")
+                        navController.navigate(MainScreens.MovieDetails(movie = movie.copy(
+                            posterPath = encodedUrl
+                        )))
+                    }
                 }
             }
         }

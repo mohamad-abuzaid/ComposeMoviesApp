@@ -1,9 +1,15 @@
 package me.abuzaid.movies.models
 
+import android.os.Parcelable
+import kotlinx.parcelize.Parcelize
+import kotlinx.serialization.Serializable
+
 /**
  * Created by "Mohamad Abuzaid" on 05/06/2024.
- * Email: mabuzaid@sure.com.sa
+ * Email: m.abuzaid.ali@gmail.com
  */
+@Serializable
+@Parcelize
 data class MovieDisplay(
     val id: Int,
     val adult: Boolean,
@@ -19,4 +25,4 @@ data class MovieDisplay(
     val video: Boolean,
     val voteAverage: Double,
     val voteCount: Int
-)
+) : Parcelable

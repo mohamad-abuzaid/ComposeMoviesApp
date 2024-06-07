@@ -4,11 +4,16 @@ import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.composable
 import androidx.navigation.navigation
+import androidx.navigation.toRoute
+import me.abuzaid.movies.models.MovieDisplay
+import me.abuzaid.movies.navigation.navtypes.parcelableType
 import me.abuzaid.movies.ui.screens.HomeScreen
 import me.abuzaid.movies.ui.screens.LanguageSelectScreen
+import me.abuzaid.movies.ui.screens.MovieDetailsScreen
 import me.abuzaid.movies.ui.screens.SplashScreen
 import me.abuzaid.movies.utils.storage.ILocalPreferencesStorage
 import org.koin.compose.koinInject
+import kotlin.reflect.typeOf
 
 /**
  * Created by "Mohamad Abuzaid" on 01/06/2024.
@@ -34,6 +39,14 @@ fun NavGraphBuilder.mainNavGraph(
 
         composable<MainScreens.Home> {
             HomeScreen(navController)
+        }
+
+        composable<MainScreens.MovieDetails>(
+            typeMap = mapOf(typeOf<MovieDisplay>() to parcelableType<MovieDisplay>(MovieDisplay.serializer()))
+        ) { entry ->
+            val movie = entry.toRoute<MainScreens.MovieDetails>().movie
+
+            MovieDetailsScreen(navController, movie)
         }
     }
 }

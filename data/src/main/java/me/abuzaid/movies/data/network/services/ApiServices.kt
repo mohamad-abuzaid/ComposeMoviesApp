@@ -8,7 +8,7 @@ import me.abuzaid.movies.data.network.models.wrappers.RemoteResponse
 
 /**
  * Created by "Mohamad Abuzaid" on 26/05/2024.
- * Email: mabuzaid@sure.com.sa
+ * Email: m.abuzaid.ali@gmail.com
  */
 class ApiServices(private val client: HttpClient) {
 
