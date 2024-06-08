@@ -1,5 +1,7 @@
 package me.abuzaid.movies.di
 
+import me.abuzaid.movies.viewmodels.MoviesViewModel
+import org.koin.androidx.viewmodel.dsl.viewModelOf
 import org.koin.dsl.module
 
 /**
@@ -8,5 +10,5 @@ import org.koin.dsl.module
  */
 
 val viewModelsModule = module {
-//    viewModelOf(::HomeViewModel)
+    viewModelOf(::MoviesViewModel)
 }

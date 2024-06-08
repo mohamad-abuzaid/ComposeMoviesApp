@@ -51,7 +51,7 @@
     <string name="no_content">No Content</string>
     <string name="error_occurred">An error occurred.</string>
     <string name="loading">Loading…</string>
-    <string name="try_again">Try Again Later</string>
+    <string name="try_again">Try Again</string>
 
     <string name="no_app_found_to_open_file">No app found to open this file</string>
 

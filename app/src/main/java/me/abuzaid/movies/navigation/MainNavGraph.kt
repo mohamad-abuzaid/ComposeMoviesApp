@@ -12,6 +12,8 @@ import me.abuzaid.movies.ui.screens.LanguageSelectScreen
 import me.abuzaid.movies.ui.screens.MovieDetailsScreen
 import me.abuzaid.movies.ui.screens.SplashScreen
 import me.abuzaid.movies.utils.storage.ILocalPreferencesStorage
+import me.abuzaid.movies.viewmodels.MoviesViewModel
+import org.koin.androidx.compose.koinViewModel
 import org.koin.compose.koinInject
 import kotlin.reflect.typeOf
 
@@ -38,7 +40,11 @@ fun NavGraphBuilder.mainNavGraph(
         }
 
         composable<MainScreens.Home> {
-            HomeScreen(navController)
+            val viewModel: MoviesViewModel = koinViewModel()
+            val state = viewModel.popularState
+            val event = viewModel::onEvent
+
+            HomeScreen(navController, state, event)
         }
 
         composable<MainScreens.MovieDetails>(

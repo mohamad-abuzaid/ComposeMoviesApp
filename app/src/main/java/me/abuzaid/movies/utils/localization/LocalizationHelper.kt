@@ -43,4 +43,12 @@ object LocalizationHelper {
             else -> "EG"
         }
     }
+
+    fun fullLocal(code: String): String {
+        return when (code) {
+            AR -> "ar-EG"
+            EN -> "en-GB"
+            else -> "ar-EG"
+        }
+    }
 }

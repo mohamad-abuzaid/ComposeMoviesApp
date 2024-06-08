@@ -49,7 +49,7 @@
     <string name="no_content">لا يوجد نتائج بحث</string>
     <string name="error_occurred">عذراً حدث خطأ</string>
     <string name="loading">جاري التحميل…</string>
-    <string name="try_again">حاول مرة أخرى لاحقا</string>
+    <string name="try_again">حاول مرة أخرى</string>
 
     <string name="no_app_found_to_open_file">لا يوجد تطبيق لفتح الملف</string>
 </resources>

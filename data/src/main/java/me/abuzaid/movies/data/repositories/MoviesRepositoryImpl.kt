@@ -4,12 +4,11 @@ import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOn
-import me.abuzaid.movies.data.network.models.mappers.MapThrowableToCallFailure
-import me.abuzaid.movies.data.network.models.mappers.UnKnownError
 import me.abuzaid.movies.data.network.models.mappers.toMovieModelList
 import me.abuzaid.movies.data.network.services.ApiServices
 import me.abuzaid.movies.domain.models.MovieModel
 import me.abuzaid.movies.domain.models.wrappers.CallFailure
+import me.abuzaid.movies.domain.models.wrappers.ErrorModel
 import me.abuzaid.movies.domain.models.wrappers.NetworkCallResult
 import me.abuzaid.movies.domain.repositories.MoviesRepository
 
@@ -28,11 +27,29 @@ class MoviesRepositoryImpl(
             result.results?.let {
                 emit(NetworkCallResult(value = it.toMovieModelList()))
             } ?: run {
-                emit(NetworkCallResult(error = UnKnownError()))
+                emit(
+                    NetworkCallResult(
+                        error = CallFailure(
+                            ErrorModel(
+                                code = result.statusCode ?: -1,
+                                errorMessage = result.statusMessage ?: ""
+                            )
+                        )
+                    )
+                )
             }
 
         }.flowOn(dispatcher)
             .catch { e ->
-                emit(NetworkCallResult(error = MapThrowableToCallFailure.map(e)))
+                emit(
+                    NetworkCallResult(
+                        error = CallFailure(
+                            ErrorModel(
+                                code = -1,
+                                errorMessage = e.message ?: ""
+                            )
+                        )
+                    )
+                )
             }
 }

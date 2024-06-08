@@ -11,12 +11,12 @@ import org.koin.dsl.module
  * Email: m.abuzaid.ali@gmail.com
  */
 val networkModule = module {
-    single(named("dataBaseUrl")) { BuildConfig.BASE_URL }
+    single(named("baseUrl")) { BuildConfig.BASE_URL }
     single(named("accessToken")) { BuildConfig.TOKEN }
 
-    single<HttpClient> {
+    single {
         KtorClientFactory.getInstance(
-            baseUrl = get(named("dataBaseUrl")),
+            baseUrl = get(named("baseUrl")),
             token = get(named("accessToken"))
         )
     }

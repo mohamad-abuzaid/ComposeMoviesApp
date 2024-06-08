@@ -1,10 +1,11 @@
 package me.abuzaid.movies.ui.screens
 
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
@@ -20,10 +21,12 @@ import androidx.compose.foundation.lazy.grid.items
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
@@ -34,8 +37,14 @@ import me.abuzaid.movies.R
 import me.abuzaid.movies.navigation.MainScreens
 import me.abuzaid.movies.ui.composables.MovieItem
 import me.abuzaid.movies.ui.composables.inputfields.InputTextField
+import me.abuzaid.movies.ui.composables.loaders.ErrorView
+import me.abuzaid.movies.ui.composables.loaders.LoadingIndicatorRotating
+import me.abuzaid.movies.ui.composables.loaders.NoContentView
 import me.abuzaid.movies.ui.composables.pages.ScreenPage
-import me.abuzaid.movies.utils.Dummy
+import me.abuzaid.movies.utils.LocalLang
+import me.abuzaid.movies.utils.localization.LocalizationHelper
+import me.abuzaid.movies.viewmodels.MoviesEvents
+import me.abuzaid.movies.viewmodels.PopularState
 import java.net.URLEncoder
 
 /**
@@ -44,13 +53,32 @@ import java.net.URLEncoder
  */
 @Composable
 fun HomeScreen(
-    navController: NavController
+    navController: NavController,
+    state: PopularState,
+    fireEvent: (MoviesEvents) -> Unit
 ) {
+    val lang = LocalLang.current
+
     val searchQuery = remember { mutableStateOf("") }
+
+    /*****************************/
+
+    LaunchedEffect(key1 = state) {
+        if (state.success == null) {
+            fireEvent(
+                MoviesEvents.FetchPopular(LocalizationHelper.fullLocal(lang))
+            )
+        }
+    }
+    /*****************************/
 
     ScreenPage(
         pullRefreshEnabled = true,
-        onRefresh = { }
+        onRefresh = {
+            fireEvent(
+                MoviesEvents.FetchPopular(LocalizationHelper.fullLocal(lang))
+            )
+        }
     ) {
         Column(
             modifier = Modifier
@@ -127,22 +155,52 @@ fun HomeScreen(
                 color = MaterialTheme.colorScheme.primary
             )
 
-            val items = Dummy.movies
+            with(state) {
+                this.success?.let { movies ->
+                    if (movies.isNotEmpty()) {
+                        LazyVerticalGrid(
+                            modifier = Modifier.fillMaxSize(),
+                            columns = GridCells.Fixed(3),
+                            verticalArrangement = Arrangement.spacedBy(10.dp),
+                            horizontalArrangement = Arrangement.SpaceBetween
+                        ) {
+                            items(movies) { movie ->
+                                MovieItem(
+                                    movieItem = movie
+                                ) {
+                                    val encodedUrl = URLEncoder.encode(movie.posterPath, "utf-8")
+                                    navController.navigate(
+                                        MainScreens.MovieDetails(
+                                            movie = movie.copy(
+                                                posterPath = encodedUrl
+                                            )
+                                        )
+                                    )
+                                }
+                            }
+                        }
+                    } else {
+                        NoContentView()
+                    }
+                }
 
-            LazyVerticalGrid(
-                modifier = Modifier.fillMaxSize(),
-                columns = GridCells.Fixed(3),
-                verticalArrangement = Arrangement.spacedBy(10.dp),
-                horizontalArrangement = Arrangement.SpaceBetween
-            ) {
-                items(items) { movie ->
-                    MovieItem(
-                        movieItem = movie
-                    ){
-                        val encodedUrl = URLEncoder.encode(movie.posterPath, "utf-8")
-                        navController.navigate(MainScreens.MovieDetails(movie = movie.copy(
-                            posterPath = encodedUrl
-                        )))
+                this.error?.let { error ->
+                    ErrorView(errorText = error) {
+                        fireEvent(
+                            MoviesEvents.FetchPopular(LocalizationHelper.fullLocal(lang))
+                        )
+                    }
+                }
+
+                if (this.loading) {
+                    Box(
+                        modifier = Modifier
+                            .fillMaxSize()
+                            .background(color = Color.Unspecified)
+                            .clickable { },
+                        contentAlignment = Alignment.Center
+                    ) {
+                        LoadingIndicatorRotating(false)
                     }
                 }
             }
@@ -154,6 +212,8 @@ fun HomeScreen(
 @Composable
 fun PreviewHomeScreen() {
     HomeScreen(
-        navController = rememberNavController()
+        navController = rememberNavController(),
+        state = PopularState(),
+        fireEvent = {}
     )
 }
