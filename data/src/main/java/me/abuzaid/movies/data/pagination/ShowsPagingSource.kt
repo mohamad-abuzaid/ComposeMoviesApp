@@ -2,10 +2,8 @@ package me.abuzaid.movies.data.pagination
 
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
-import me.abuzaid.movies.data.network.models.mappers.toMovieModelList
 import me.abuzaid.movies.data.network.models.mappers.toShowModelList
 import me.abuzaid.movies.data.network.services.ApiServices
-import me.abuzaid.movies.domain.models.MovieModel
 import me.abuzaid.movies.domain.models.ShowModel
 import me.abuzaid.movies.domain.models.wrappers.CallFailure
 import me.abuzaid.movies.domain.models.wrappers.ErrorModel
@@ -14,7 +12,7 @@ import me.abuzaid.movies.domain.models.wrappers.ErrorModel
  * Created by "Mohamad Abuzaid" on 05/02/2024.
  * Email: mabuzaid@sure.com.sa
  */
-class MoviesPagingSource(
+class ShowsPagingSource(
     private val apiServices: ApiServices,
     private val lang: String
 ) : PagingSource<Int, ShowModel>() {

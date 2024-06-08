@@ -10,7 +10,7 @@ import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOn
 import me.abuzaid.movies.data.network.models.mappers.toMovieModelList
 import me.abuzaid.movies.data.network.services.ApiServices
-import me.abuzaid.movies.data.pagination.MoviesPagingSource
+import me.abuzaid.movies.data.pagination.ShowsPagingSource
 import me.abuzaid.movies.domain.models.MovieModel
 import me.abuzaid.movies.domain.models.ShowModel
 import me.abuzaid.movies.domain.models.wrappers.CallFailure
@@ -65,7 +65,7 @@ class MoviesRepositoryImpl(
             prefetchDistance = 2
         ),
         pagingSourceFactory = {
-            MoviesPagingSource(
+            ShowsPagingSource(
                 apiServices = moviesApiServices,
                 lang = lang
             )
