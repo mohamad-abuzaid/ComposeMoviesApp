@@ -14,11 +14,11 @@ import me.abuzaid.movies.data.network.models.wrappers.RemoteResponse
 class ApiServices(private val client: HttpClient) {
 
     companion object {
-        private const val FETCH_MOVIES = "discover/movie"
+        private const val FETCH_POPULAR_MOVIES = "discover/movie"
     }
 
     suspend fun fetchPopularMovies(lang: String): RemoteResponse<List<MovieRemote>> =
-        client.get(FETCH_MOVIES) {
+        client.get(FETCH_POPULAR_MOVIES) {
             parameter("include_adult", false)
             parameter("include_video", false)
             parameter("language", lang)
