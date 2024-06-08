@@ -16,10 +16,9 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
-import androidx.paging.LoadState
 import androidx.paging.compose.collectAsLazyPagingItems
 import me.abuzaid.movies.navigation.MainScreens
-import me.abuzaid.movies.ui.composables.MovieItem
+import me.abuzaid.movies.ui.composables.ShowItem
 import me.abuzaid.movies.ui.composables.loaders.ErrorView
 import me.abuzaid.movies.ui.composables.loaders.LoadingIndicatorRotating
 import me.abuzaid.movies.ui.composables.loaders.NoContentView
@@ -74,14 +73,14 @@ fun ShowsScreen(
                 ) {
                     items(shows.itemCount) { index ->
                         shows[index]?.let { show ->
-                            MovieItem(
-                                movieItem = show
+                            ShowItem(
+                                showItem = show
                             ) {
                                 val encodedBackdrop = URLEncoder.encode(show.backdropPath, "utf-8")
                                 val encodedPoster = URLEncoder.encode(show.posterPath, "utf-8")
                                 navController.navigate(
-                                    MainScreens.MovieDetails(
-                                        movie = show.copy(
+                                    MainScreens.ShowDetails(
+                                        show = show.copy(
                                             backdropPath = encodedBackdrop,
                                             posterPath = encodedPoster
                                         )

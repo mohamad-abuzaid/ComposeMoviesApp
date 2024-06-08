@@ -12,6 +12,7 @@ import me.abuzaid.movies.data.network.models.mappers.toMovieModelList
 import me.abuzaid.movies.data.network.services.ApiServices
 import me.abuzaid.movies.data.pagination.MoviesPagingSource
 import me.abuzaid.movies.domain.models.MovieModel
+import me.abuzaid.movies.domain.models.ShowModel
 import me.abuzaid.movies.domain.models.wrappers.CallFailure
 import me.abuzaid.movies.domain.models.wrappers.ErrorModel
 import me.abuzaid.movies.domain.models.wrappers.NetworkCallResult
@@ -58,7 +59,7 @@ class MoviesRepositoryImpl(
                 )
             }
 
-    override suspend fun fetchTvShows(lang: String): Flow<PagingData<MovieModel>> = Pager(
+    override suspend fun fetchTvShows(lang: String): Flow<PagingData<ShowModel>> = Pager(
         config = PagingConfig(
             pageSize = 15,
             prefetchDistance = 2

@@ -6,10 +6,12 @@ import androidx.navigation.compose.composable
 import androidx.navigation.navigation
 import androidx.navigation.toRoute
 import me.abuzaid.movies.models.MovieDisplay
+import me.abuzaid.movies.models.ShowDisplay
 import me.abuzaid.movies.navigation.navtypes.parcelableType
 import me.abuzaid.movies.ui.screens.HomeScreen
 import me.abuzaid.movies.ui.screens.LanguageSelectScreen
 import me.abuzaid.movies.ui.screens.MovieDetailsScreen
+import me.abuzaid.movies.ui.screens.ShowDetailsScreen
 import me.abuzaid.movies.ui.screens.ShowsScreen
 import me.abuzaid.movies.ui.screens.SplashScreen
 import me.abuzaid.movies.utils.storage.ILocalPreferencesStorage
@@ -62,6 +64,14 @@ fun NavGraphBuilder.mainNavGraph(
             val movie = entry.toRoute<MainScreens.MovieDetails>().movie
 
             MovieDetailsScreen(navController, movie)
+        }
+
+        composable<MainScreens.ShowDetails>(
+            typeMap = mapOf(typeOf<ShowDisplay>() to parcelableType<ShowDisplay>(ShowDisplay.serializer()))
+        ) { entry ->
+            val show = entry.toRoute<MainScreens.ShowDetails>().show
+
+            ShowDetailsScreen(navController, show)
         }
     }
 }

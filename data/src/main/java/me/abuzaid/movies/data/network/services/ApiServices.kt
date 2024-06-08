@@ -5,6 +5,7 @@ import io.ktor.client.call.body
 import io.ktor.client.request.get
 import io.ktor.client.request.parameter
 import me.abuzaid.movies.data.network.models.MovieRemote
+import me.abuzaid.movies.data.network.models.ShowRemote
 import me.abuzaid.movies.data.network.models.wrappers.RemoteResponse
 
 /**
@@ -27,7 +28,7 @@ class ApiServices(private val client: HttpClient) {
             parameter("sort_by", "popularity.desc")
         }.body()
 
-    suspend fun fetchTvShows(lang: String, page:Int): RemoteResponse<List<MovieRemote>> =
+    suspend fun fetchTvShows(lang: String, page:Int): RemoteResponse<List<ShowRemote>> =
         client.get(FETCH_SHOWS) {
             parameter("include_adult", false)
             parameter("include_video", false)

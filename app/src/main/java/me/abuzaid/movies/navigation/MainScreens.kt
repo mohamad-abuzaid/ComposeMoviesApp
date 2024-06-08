@@ -2,6 +2,7 @@ package me.abuzaid.movies.navigation
 
 import kotlinx.serialization.Serializable
 import me.abuzaid.movies.models.MovieDisplay
+import me.abuzaid.movies.models.ShowDisplay
 
 /**
  * Created by "Mohamad Abuzaid" on 01/06/2024.
@@ -23,4 +24,7 @@ sealed class MainScreens {
 
     @Serializable
     data class MovieDetails(val movie: MovieDisplay) : MainScreens()
+
+    @Serializable
+    data class ShowDetails(val show: ShowDisplay) : MainScreens()
 }

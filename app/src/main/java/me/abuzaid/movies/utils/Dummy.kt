@@ -2,6 +2,7 @@ package me.abuzaid.movies.utils
 
 import me.abuzaid.movies.models.ActorDisplay
 import me.abuzaid.movies.models.MovieDisplay
+import me.abuzaid.movies.models.ShowDisplay
 
 /**
  * Created by "Mohamad Abuzaid" on 05/06/2024.
@@ -111,6 +112,26 @@ object Dummy {
     )
 
     val movies = listOf(movie1, movie2, movie3, movie4, movie5, movie6)
+
+    /***************/
+    val show = ShowDisplay(
+        id = 4549,
+        adult = false,
+        backdropPath = "https://picsum.photos/100",
+        genreIds = listOf(),
+        originCountry = listOf(),
+        originalLanguage = "aptent",
+        originalName = "Austin Wynn",
+        overview = "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
+        popularity = 52.53,
+        posterPath = "https://picsum.photos/100",
+        firstAirDate = "augue",
+        name = "Greg Osborne",
+        voteAverage = 54.55,
+        voteCount = 3909
+    )
+
+    /***************/
 
     val actor1 = ActorDisplay(
         name = "Toni Duran",

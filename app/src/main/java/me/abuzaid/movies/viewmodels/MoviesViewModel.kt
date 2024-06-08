@@ -16,6 +16,7 @@ import kotlinx.coroutines.launch
 import me.abuzaid.movies.domain.usecases.MoviesUseCases
 import me.abuzaid.movies.models.mappers.toMovieDisplay
 import me.abuzaid.movies.models.mappers.toMovieDisplayList
+import me.abuzaid.movies.models.mappers.toShowDisplay
 import java.io.IOException
 
 /**
@@ -78,7 +79,7 @@ class MoviesViewModel(
                     .collect { result ->
                         showsState = showsState.copy(
                             loading = false,
-                            success = MutableStateFlow(result.map { list -> list.toMovieDisplay() })
+                            success = MutableStateFlow(result.map { list -> list.toShowDisplay() })
                         )
                     }
 
