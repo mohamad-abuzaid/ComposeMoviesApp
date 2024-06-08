@@ -11,8 +11,10 @@ import kotlinx.coroutines.flow.flowOn
 import me.abuzaid.movies.data.network.models.mappers.toMovieModelList
 import me.abuzaid.movies.data.network.services.ApiServices
 import me.abuzaid.movies.data.pagination.MoviesPagingSource
+import me.abuzaid.movies.data.pagination.SearchPagingSource
 import me.abuzaid.movies.data.pagination.ShowsPagingSource
 import me.abuzaid.movies.domain.models.MovieModel
+import me.abuzaid.movies.domain.models.SearchModel
 import me.abuzaid.movies.domain.models.ShowModel
 import me.abuzaid.movies.domain.models.wrappers.CallFailure
 import me.abuzaid.movies.domain.models.wrappers.ErrorModel
@@ -81,6 +83,20 @@ class MoviesRepositoryImpl(
         pagingSourceFactory = {
             ShowsPagingSource(
                 apiServices = moviesApiServices,
+                lang = lang
+            )
+        }
+    ).flow.flowOn(dispatcher)
+
+    override suspend fun search(query: String, lang: String): Flow<PagingData<SearchModel>> = Pager(
+        config = PagingConfig(
+            pageSize = 15,
+            prefetchDistance = 2
+        ),
+        pagingSourceFactory = {
+            SearchPagingSource(
+                apiServices = moviesApiServices,
+                query = query,
                 lang = lang
             )
         }

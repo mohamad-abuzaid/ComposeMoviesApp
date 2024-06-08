@@ -17,6 +17,8 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import androidx.paging.compose.collectAsLazyPagingItems
+import me.abuzaid.movies.models.mappers.toMovieDisplay
+import me.abuzaid.movies.models.mappers.toShowDisplay
 import me.abuzaid.movies.navigation.MainScreens
 import me.abuzaid.movies.ui.composables.MediaItem
 import me.abuzaid.movies.ui.composables.loaders.ErrorView
@@ -26,29 +28,30 @@ import me.abuzaid.movies.ui.composables.pages.ScreenPage
 import me.abuzaid.movies.utils.LocalLang
 import me.abuzaid.movies.utils.localization.LocalizationHelper
 import me.abuzaid.movies.viewmodels.MoviesEvents
-import me.abuzaid.movies.viewmodels.ShowsState
+import me.abuzaid.movies.viewmodels.SearchState
 import java.net.URLEncoder
 
 /**
- * Created by "Mohamad Abuzaid" on 01/06/2024.
+ * Created by "Mohamad Abuzaid" on 08/06/2024.
  * Email: m.abuzaid.ali@gmail.com
  */
 @Composable
-fun ShowsScreen(
+fun SearchScreen(
     navController: NavController,
-    state: ShowsState,
-    fireEvent: (MoviesEvents) -> Unit
+    state: SearchState,
+    fireEvent: (MoviesEvents) -> Unit,
+    query: String
 ) {
     val lang = LocalLang.current
 
-    val showsPagedItems = state.success?.collectAsLazyPagingItems()
+    val searchPagedItems = state.success?.collectAsLazyPagingItems()
 
     /*****************************/
 
     LaunchedEffect(key1 = state) {
         if (state.success == null) {
             fireEvent(
-                MoviesEvents.FetchShows(LocalizationHelper.fullLocal(lang))
+                MoviesEvents.Search(query, LocalizationHelper.fullLocal(lang))
             )
         }
     }
@@ -59,33 +62,45 @@ fun ShowsScreen(
         pullRefreshEnabled = true,
         onRefresh = {
             fireEvent(
-                MoviesEvents.FetchShows(LocalizationHelper.fullLocal(lang))
+                MoviesEvents.Search(query, LocalizationHelper.fullLocal(lang))
             )
         }
     ) {
-        showsPagedItems?.let { shows ->
-            if (shows.itemCount != 0) {
+        searchPagedItems?.let { medias ->
+            if (medias.itemCount != 0) {
                 LazyVerticalGrid(
                     modifier = Modifier.fillMaxSize(),
                     columns = GridCells.Fixed(3),
                     verticalArrangement = Arrangement.spacedBy(10.dp),
                     horizontalArrangement = Arrangement.SpaceBetween
                 ) {
-                    items(shows.itemCount) { index ->
-                        shows[index]?.let { show ->
+                    items(medias.itemCount) { index ->
+                        medias[index]?.let { media ->
                             MediaItem(
-                                mediaItem = show
+                                mediaItem = media
                             ) {
-                                val encodedBackdrop = URLEncoder.encode(show.backdropPath, "utf-8")
-                                val encodedPoster = URLEncoder.encode(show.posterPath, "utf-8")
-                                navController.navigate(
-                                    MainScreens.ShowDetails(
-                                        show = show.copy(
-                                            backdropPath = encodedBackdrop,
-                                            posterPath = encodedPoster
+                                val encodedBackdrop = URLEncoder.encode(media.backdropPath, "utf-8")
+                                val encodedPoster = URLEncoder.encode(media.posterPath, "utf-8")
+
+                                if (media.mediaType == "tv") {
+                                    navController.navigate(
+                                        MainScreens.ShowDetails(
+                                            show = media.toShowDisplay().copy(
+                                                backdropPath = encodedBackdrop,
+                                                posterPath = encodedPoster
+                                            )
                                         )
                                     )
-                                )
+                                } else {
+                                    navController.navigate(
+                                        MainScreens.MovieDetails(
+                                            movie = media.toMovieDisplay().copy(
+                                                backdropPath = encodedBackdrop,
+                                                posterPath = encodedPoster
+                                            )
+                                        )
+                                    )
+                                }
                             }
                         }
                     }
@@ -99,7 +114,7 @@ fun ShowsScreen(
             this.error?.let { error ->
                 ErrorView(errorText = error) {
                     fireEvent(
-                        MoviesEvents.FetchShows(LocalizationHelper.fullLocal(lang))
+                        MoviesEvents.Search(query, LocalizationHelper.fullLocal(lang))
                     )
                 }
             }
@@ -121,10 +136,11 @@ fun ShowsScreen(
 
 @Preview(showSystemUi = false, showBackground = true, locale = "en")
 @Composable
-fun PreviewShowsScreen() {
-    ShowsScreen(
+fun PreviewSearchScreen() {
+    SearchScreen(
         navController = rememberNavController(),
-        state = ShowsState(),
-        fireEvent = {}
+        state = SearchState(),
+        fireEvent = {},
+        query = ""
     )
 }

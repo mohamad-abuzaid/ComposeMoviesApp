@@ -26,6 +26,9 @@ sealed class MainScreens {
     data object Shows : MainScreens()
 
     @Serializable
+    data class Search(val query: String) : MainScreens()
+
+    @Serializable
     data class MovieDetails(val movie: MovieDisplay) : MainScreens()
 
     @Serializable

@@ -15,6 +15,7 @@ import kotlinx.coroutines.launch
 import me.abuzaid.movies.domain.usecases.MoviesUseCases
 import me.abuzaid.movies.models.mappers.toMovieDisplay
 import me.abuzaid.movies.models.mappers.toMovieDisplayList
+import me.abuzaid.movies.models.mappers.toSearchDisplay
 import me.abuzaid.movies.models.mappers.toShowDisplay
 import java.io.IOException
 
@@ -36,11 +37,15 @@ class MoviesViewModel(
     var showsState by mutableStateOf(ShowsState())
         private set
 
+    var searchState by mutableStateOf(SearchState())
+        private set
+
     fun onEvent(event: MoviesEvents) {
         when (event) {
             is MoviesEvents.FetchPopular -> fetchPopularMovies(event.lang)
             is MoviesEvents.FetchMovies -> fetchMovies(event.lang)
             is MoviesEvents.FetchShows -> fetchTvShows(event.lang)
+            is MoviesEvents.Search -> search(event.query, event.lang)
         }
     }
 
@@ -112,6 +117,30 @@ class MoviesViewModel(
 
             } catch (ioe: IOException) {
                 showsState = showsState.copy(
+                    loading = false,
+                    error = "Unknown Error",
+                )
+            }
+        }
+    }
+
+    private var searchJob: Job? = null
+    private fun search(query: String, lang: String) {
+        searchJob = viewModelScope.launch {
+            searchState = searchState.copy(loading = true)
+            try {
+                moviesUseCases.search(query, lang)
+                    .distinctUntilChanged()
+                    .cachedIn(viewModelScope)
+                    .collect { result ->
+                        searchState = searchState.copy(
+                            loading = false,
+                            success = MutableStateFlow(result.map { list -> list.toSearchDisplay() })
+                        )
+                    }
+
+            } catch (ioe: IOException) {
+                searchState = searchState.copy(
                     loading = false,
                     error = "Unknown Error",
                 )

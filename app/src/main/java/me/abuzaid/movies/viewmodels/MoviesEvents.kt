@@ -8,4 +8,5 @@ sealed class MoviesEvents {
     data class FetchPopular(val lang: String) : MoviesEvents()
     data class FetchMovies(val lang: String) : MoviesEvents()
     data class FetchShows(val lang: String) : MoviesEvents()
+    data class Search(val query: String, val lang: String) : MoviesEvents()
 }

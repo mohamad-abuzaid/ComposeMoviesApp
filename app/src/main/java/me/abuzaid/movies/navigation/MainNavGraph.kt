@@ -12,6 +12,7 @@ import me.abuzaid.movies.ui.screens.HomeScreen
 import me.abuzaid.movies.ui.screens.LanguageSelectScreen
 import me.abuzaid.movies.ui.screens.MovieDetailsScreen
 import me.abuzaid.movies.ui.screens.MoviesScreen
+import me.abuzaid.movies.ui.screens.SearchScreen
 import me.abuzaid.movies.ui.screens.ShowDetailsScreen
 import me.abuzaid.movies.ui.screens.ShowsScreen
 import me.abuzaid.movies.ui.screens.SplashScreen
@@ -65,6 +66,15 @@ fun NavGraphBuilder.mainNavGraph(
             val event = viewModel::onEvent
 
             ShowsScreen(navController, state, event)
+        }
+
+        composable<MainScreens.Search> { entry ->
+            val viewModel: MoviesViewModel = koinViewModel()
+            val state = viewModel.searchState
+            val event = viewModel::onEvent
+            val query = entry.toRoute<MainScreens.Search>().query
+
+            SearchScreen(navController, state, event, query)
         }
 
         composable<MainScreens.MovieDetails>(

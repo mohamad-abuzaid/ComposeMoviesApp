@@ -18,7 +18,7 @@ import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import androidx.paging.compose.collectAsLazyPagingItems
 import me.abuzaid.movies.navigation.MainScreens
-import me.abuzaid.movies.ui.composables.MovieItem
+import me.abuzaid.movies.ui.composables.MediaItem
 import me.abuzaid.movies.ui.composables.loaders.ErrorView
 import me.abuzaid.movies.ui.composables.loaders.LoadingIndicatorRotating
 import me.abuzaid.movies.ui.composables.loaders.NoContentView
@@ -73,8 +73,8 @@ fun MoviesScreen(
                 ) {
                     items(movies.itemCount) { index ->
                         movies[index]?.let { movie ->
-                            MovieItem(
-                                movieItem = movie
+                            MediaItem(
+                                mediaItem = movie
                             ) {
                                 val encodedBackdrop = URLEncoder.encode(movie.backdropPath, "utf-8")
                                 val encodedPoster = URLEncoder.encode(movie.posterPath, "utf-8")

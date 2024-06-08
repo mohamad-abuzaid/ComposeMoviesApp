@@ -18,11 +18,16 @@ data class ShowDisplay(
     val originCountry: List<String>,
     val originalLanguage: String,
     val originalName: String,
-    val overview: String,
+    override val overview: String,
     val popularity: Double,
-    val posterPath: String,
+    override val posterPath: String,
     val firstAirDate: String,
     val name: String,
-    val voteAverage: Double,
-    val voteCount: Int
-): Parcelable
+    override val voteAverage: Double,
+    override val voteCount: Int
+): Parcelable, MediaDisplay{
+    override val header: String
+        get() = name
+    override val date: String
+        get() = firstAirDate
+}

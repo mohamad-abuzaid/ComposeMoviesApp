@@ -26,4 +26,9 @@ class MoviesUseCases(
         withContext(dispatcher) {
             moviesRepository.fetchTvShows(lang)
         }
+
+    suspend fun search(query: String, lang: String) =
+        withContext(dispatcher) {
+            moviesRepository.search(query, lang)
+        }
 }

@@ -3,6 +3,7 @@ package me.abuzaid.movies.viewmodels
 import androidx.paging.PagingData
 import kotlinx.coroutines.flow.MutableStateFlow
 import me.abuzaid.movies.models.MovieDisplay
+import me.abuzaid.movies.models.SearchDisplay
 import me.abuzaid.movies.models.ShowDisplay
 
 /**
@@ -24,5 +25,11 @@ data class MoviesState(
 data class ShowsState(
     val loading: Boolean = false,
     val success: MutableStateFlow<PagingData<ShowDisplay>>? = null,
+    val error: String? = null
+)
+
+data class SearchState(
+    val loading: Boolean = false,
+    val success: MutableStateFlow<PagingData<SearchDisplay>>? = null,
     val error: String? = null
 )

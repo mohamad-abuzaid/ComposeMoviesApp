@@ -35,7 +35,7 @@ import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import me.abuzaid.movies.R
 import me.abuzaid.movies.navigation.MainScreens
-import me.abuzaid.movies.ui.composables.MovieItem
+import me.abuzaid.movies.ui.composables.MediaItem
 import me.abuzaid.movies.ui.composables.inputfields.InputTextField
 import me.abuzaid.movies.ui.composables.loaders.ErrorView
 import me.abuzaid.movies.ui.composables.loaders.LoadingIndicatorRotating
@@ -93,7 +93,8 @@ fun HomeScreen(
             )
 
             InputTextField(
-                placeholder = stringResource(R.string.search_title)
+                placeholder = stringResource(R.string.search_title),
+                onSearch = { navController.navigate(MainScreens.Search(searchQuery.value)) }
             ) {
                 searchQuery.value = it
             }
@@ -173,8 +174,8 @@ fun HomeScreen(
                             horizontalArrangement = Arrangement.SpaceBetween
                         ) {
                             items(movies) { movie ->
-                                MovieItem(
-                                    movieItem = movie
+                                MediaItem(
+                                    mediaItem = movie
                                 ) {
                                     val encodedBackdrop =
                                         URLEncoder.encode(movie.backdropPath, "utf-8")

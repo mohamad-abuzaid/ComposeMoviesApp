@@ -5,13 +5,14 @@ import kotlinx.parcelize.Parcelize
 import kotlinx.serialization.Serializable
 
 /**
- * Created by "Mohamad Abuzaid" on 05/06/2024.
+ * Created by "Mohamad Abuzaid" on 08/06/2024.
  * Email: m.abuzaid.ali@gmail.com
  */
 @Serializable
 @Parcelize
-data class MovieDisplay(
+data class SearchDisplay(
     val id: Int,
+    val mediaType: String,
     val adult: Boolean,
     val backdropPath: String,
     val genreIds: List<Int>,
@@ -21,13 +22,15 @@ data class MovieDisplay(
     val popularity: Double,
     override val posterPath: String,
     val releaseDate: String,
+    val firstAirDate: String,
     val title: String,
+    val name: String,
     val video: Boolean,
     override val voteAverage: Double,
     override val voteCount: Int
-) : Parcelable, MediaDisplay{
+) : Parcelable, MediaDisplay {
     override val header: String
-        get() = title
+        get() = if (mediaType == "tv") name else title
     override val date: String
-        get() = releaseDate
+        get() = if (mediaType == "tv") firstAirDate else releaseDate
 }

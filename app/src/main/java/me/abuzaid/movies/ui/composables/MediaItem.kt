@@ -25,14 +25,12 @@ import coil.compose.SubcomposeAsyncImage
 import coil.request.CachePolicy
 import coil.request.ImageRequest
 import coil.util.DebugLogger
-import me.abuzaid.movies.BuildConfig
 import me.abuzaid.movies.R
-import me.abuzaid.movies.models.MovieDisplay
+import me.abuzaid.movies.models.MediaDisplay
 import me.abuzaid.movies.utils.Dummy
 import okhttp3.OkHttpClient
 import okhttp3.Request
 import org.koin.compose.getKoin
-import org.koin.compose.koinInject
 import org.koin.core.qualifier.named
 
 /**
@@ -40,8 +38,8 @@ import org.koin.core.qualifier.named
  * Email: m.abuzaid.ali@gmail.com
  */
 @Composable
-fun MovieItem(
-    movieItem: MovieDisplay,
+fun MediaItem(
+    mediaItem: MediaDisplay,
     onClick: () -> Unit
 ) {
     Column(
@@ -74,7 +72,7 @@ fun MovieItem(
                 .size(120.dp)
                 .clip(shape = RoundedCornerShape(12.dp)),
             model = ImageRequest.Builder(LocalContext.current)
-                .data("https://image.tmdb.org/t/p/original${movieItem.posterPath}")
+                .data("https://image.tmdb.org/t/p/original${mediaItem.posterPath}")
                 .networkCachePolicy(CachePolicy.ENABLED)
                 .diskCachePolicy(CachePolicy.ENABLED)
                 .memoryCachePolicy(CachePolicy.DISABLED)
@@ -93,7 +91,7 @@ fun MovieItem(
 
         Text(
             modifier = Modifier.padding(top = 15.dp),
-            text = movieItem.title,
+            text = mediaItem.header,
             style = MaterialTheme.typography.labelLarge,
             color = MaterialTheme.colorScheme.primary,
             textAlign = TextAlign.Center
@@ -101,7 +99,7 @@ fun MovieItem(
 
         Text(
             modifier = Modifier.padding(top = 5.dp),
-            text = movieItem.releaseDate.split("-")[0],
+            text = mediaItem.date.split("-")[0],
             style = MaterialTheme.typography.labelMedium,
             color = MaterialTheme.colorScheme.secondary
         )
@@ -110,8 +108,8 @@ fun MovieItem(
 
 @Preview(showSystemUi = false, showBackground = false, locale = "en")
 @Composable
-fun PreviewMovieItem() {
-    MovieItem(
-        movieItem = Dummy.movie1
+fun PreviewMediaItem() {
+    MediaItem(
+        mediaItem = Dummy.movie1
     ) {}
 }
