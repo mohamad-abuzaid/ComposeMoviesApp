@@ -24,6 +24,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
@@ -31,7 +32,11 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
+import coil.ImageLoader
 import coil.compose.SubcomposeAsyncImage
+import coil.request.CachePolicy
+import coil.request.ImageRequest
+import coil.util.DebugLogger
 import me.abuzaid.movies.R
 import me.abuzaid.movies.models.MovieDisplay
 import me.abuzaid.movies.ui.composables.ActorItem
@@ -39,6 +44,10 @@ import me.abuzaid.movies.ui.composables.RatingStars
 import me.abuzaid.movies.ui.composables.buttons.MainRoundedButton
 import me.abuzaid.movies.ui.composables.pages.ScreenPage
 import me.abuzaid.movies.utils.Dummy
+import okhttp3.OkHttpClient
+import okhttp3.Request
+import org.koin.compose.getKoin
+import org.koin.core.qualifier.named
 
 /**
  * Created by "Mohamad Abuzaid" on 07/06/2024.
@@ -60,12 +69,36 @@ fun MovieDetailsScreen(
                 .verticalScroll(rememberScrollState()),
             verticalArrangement = Arrangement.Top
         ) {
+            val token = getKoin().get<String>(named("accessToken"))
+            val imageLoader = ImageLoader.Builder(LocalContext.current)
+                .okHttpClient {
+                    OkHttpClient.Builder()
+                        .addInterceptor { chain ->
+                            val request = chain.request()
+                            val newRequest: Request = request.newBuilder()
+                                .header("Authorization", "Bearer $token")
+                                .method(request.method, request.body)
+                                .build()
+                            chain.proceed(newRequest)
+                        }
+                        .build()
+                }
+                .respectCacheHeaders(false)
+                .logger(DebugLogger())
+                .build()
+
             SubcomposeAsyncImage(
                 modifier = Modifier
                     .fillMaxWidth()
                     .height(400.dp),
-                model = movie.posterPath,
+                model = ImageRequest.Builder(LocalContext.current)
+                    .data("https://image.tmdb.org/t/p/original${movie.posterPath}")
+                    .networkCachePolicy(CachePolicy.ENABLED)
+                    .diskCachePolicy(CachePolicy.ENABLED)
+                    .memoryCachePolicy(CachePolicy.DISABLED)
+                    .build(),
                 contentScale = ContentScale.FillBounds,
+                imageLoader = imageLoader,
                 loading = { CircularProgressIndicator() },
                 error = {
                     Image(

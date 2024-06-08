@@ -168,11 +168,13 @@ fun HomeScreen(
                                 MovieItem(
                                     movieItem = movie
                                 ) {
-                                    val encodedUrl = URLEncoder.encode(movie.posterPath, "utf-8")
+                                    val encodedBackdrop = URLEncoder.encode(movie.backdropPath, "utf-8")
+                                    val encodedPoster = URLEncoder.encode(movie.posterPath, "utf-8")
                                     navController.navigate(
                                         MainScreens.MovieDetails(
                                             movie = movie.copy(
-                                                posterPath = encodedUrl
+                                                backdropPath = encodedBackdrop,
+                                                posterPath = encodedPoster
                                             )
                                         )
                                     )
