@@ -130,13 +130,17 @@ fun HomeScreen(
                 }
 
                 Box(
-                    modifier = Modifier.wrapContentSize(),
+                    modifier = Modifier
+                        .wrapContentSize()
+                        .clickable {
+                            navController.navigate(MainScreens.Shows)
+                        },
                     contentAlignment = Alignment.TopStart
                 ) {
                     Image(
                         modifier = Modifier.width(175.dp),
                         painter = painterResource(id = R.drawable.ic_shows),
-                        contentDescription = "Movies Image"
+                        contentDescription = "Shows Image"
                     )
 
                     Text(
@@ -168,7 +172,8 @@ fun HomeScreen(
                                 MovieItem(
                                     movieItem = movie
                                 ) {
-                                    val encodedBackdrop = URLEncoder.encode(movie.backdropPath, "utf-8")
+                                    val encodedBackdrop =
+                                        URLEncoder.encode(movie.backdropPath, "utf-8")
                                     val encodedPoster = URLEncoder.encode(movie.posterPath, "utf-8")
                                     navController.navigate(
                                         MainScreens.MovieDetails(

@@ -1,11 +1,16 @@
 package me.abuzaid.movies.data.repositories
 
+import androidx.paging.Pager
+import androidx.paging.PagingConfig
+import androidx.paging.PagingData
 import kotlinx.coroutines.CoroutineDispatcher
+import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOn
 import me.abuzaid.movies.data.network.models.mappers.toMovieModelList
 import me.abuzaid.movies.data.network.services.ApiServices
+import me.abuzaid.movies.data.pagination.MoviesPagingSource
 import me.abuzaid.movies.domain.models.MovieModel
 import me.abuzaid.movies.domain.models.wrappers.CallFailure
 import me.abuzaid.movies.domain.models.wrappers.ErrorModel
@@ -52,4 +57,17 @@ class MoviesRepositoryImpl(
                     )
                 )
             }
+
+    override suspend fun fetchTvShows(lang: String): Flow<PagingData<MovieModel>> = Pager(
+        config = PagingConfig(
+            pageSize = 15,
+            prefetchDistance = 2
+        ),
+        pagingSourceFactory = {
+            MoviesPagingSource(
+                apiServices = moviesApiServices,
+                lang = lang
+            )
+        }
+    ).flow.flowOn(dispatcher)
 }

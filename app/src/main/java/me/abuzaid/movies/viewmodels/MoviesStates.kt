@@ -1,5 +1,7 @@
 package me.abuzaid.movies.viewmodels
 
+import androidx.paging.PagingData
+import kotlinx.coroutines.flow.MutableStateFlow
 import me.abuzaid.movies.models.MovieDisplay
 
 /**
@@ -9,5 +11,11 @@ import me.abuzaid.movies.models.MovieDisplay
 data class PopularState(
     val loading: Boolean = false,
     val success: List<MovieDisplay>? = null,
+    val error: String? = null
+)
+
+data class ShowsState(
+    val loading: Boolean = false,
+    val success: MutableStateFlow<PagingData<MovieDisplay>>? = null,
     val error: String? = null
 )

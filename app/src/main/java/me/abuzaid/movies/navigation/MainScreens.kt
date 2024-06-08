@@ -19,5 +19,8 @@ sealed class MainScreens {
     data object Home : MainScreens()
 
     @Serializable
+    data object Shows : MainScreens()
+
+    @Serializable
     data class MovieDetails(val movie: MovieDisplay) : MainScreens()
 }

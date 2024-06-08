@@ -6,4 +6,5 @@ package me.abuzaid.movies.viewmodels
  */
 sealed class MoviesEvents {
     data class FetchPopular(val lang: String) : MoviesEvents()
+    data class FetchShows(val lang: String) : MoviesEvents()
 }
