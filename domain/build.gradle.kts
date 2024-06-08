@@ -43,4 +43,7 @@ dependencies {
     implementation(libs.paging.runtime)
 
     api(libs.timber)
+
+    api(libs.kotlin.test)
+    api(libs.kotlin.test.junit)
 }
