@@ -10,7 +10,7 @@ import me.abuzaid.movies.domain.models.wrappers.ErrorModel
 
 /**
  * Created by "Mohamad Abuzaid" on 05/02/2024.
- * Email: mabuzaid@sure.com.sa
+ * Email: m.abuzaid.ali@gmail.com
  */
 class ShowsPagingSource(
     private val apiServices: ApiServices,
