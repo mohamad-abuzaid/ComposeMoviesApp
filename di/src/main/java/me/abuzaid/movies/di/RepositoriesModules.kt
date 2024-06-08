@@ -1,5 +1,8 @@
 package me.abuzaid.movies.di
 
+import me.abuzaid.movies.data.repositories.MoviesRepositoryImpl
+import me.abuzaid.movies.domain.repositories.MoviesRepository
+import org.koin.core.qualifier.named
 import org.koin.dsl.module
 
 /**
@@ -7,10 +10,10 @@ import org.koin.dsl.module
  * Email: m.abuzaid.ali@gmail.com
  */
 val repositoriesModule = module {
-//    single<MoviesRepository> {
-//        MoviesRepositoryImpl(
-//            newsApiService = get(),
-//            dispatcher = get(named("ioDispatcher"))
-//        )
-//    }
+    single<MoviesRepository> {
+        MoviesRepositoryImpl(
+            moviesApiServices = get(),
+            dispatcher = get(named("ioDispatcher"))
+        )
+    }
 }
