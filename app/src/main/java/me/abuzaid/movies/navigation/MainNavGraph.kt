@@ -11,6 +11,7 @@ import me.abuzaid.movies.navigation.navtypes.parcelableType
 import me.abuzaid.movies.ui.screens.HomeScreen
 import me.abuzaid.movies.ui.screens.LanguageSelectScreen
 import me.abuzaid.movies.ui.screens.MovieDetailsScreen
+import me.abuzaid.movies.ui.screens.MoviesScreen
 import me.abuzaid.movies.ui.screens.ShowDetailsScreen
 import me.abuzaid.movies.ui.screens.ShowsScreen
 import me.abuzaid.movies.ui.screens.SplashScreen
@@ -48,6 +49,14 @@ fun NavGraphBuilder.mainNavGraph(
             val event = viewModel::onEvent
 
             HomeScreen(navController, state, event)
+        }
+
+        composable<MainScreens.Movies> {
+            val viewModel: MoviesViewModel = koinViewModel()
+            val state = viewModel.moviesState
+            val event = viewModel::onEvent
+
+            MoviesScreen(navController, state, event)
         }
 
         composable<MainScreens.Shows> {

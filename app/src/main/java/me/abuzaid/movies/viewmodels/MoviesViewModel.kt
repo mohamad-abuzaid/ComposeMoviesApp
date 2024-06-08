@@ -9,7 +9,6 @@ import androidx.lifecycle.viewModelScope
 import androidx.paging.cachedIn
 import androidx.paging.map
 import kotlinx.coroutines.Job
-import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.distinctUntilChanged
 import kotlinx.coroutines.launch
@@ -31,12 +30,16 @@ class MoviesViewModel(
     var popularState by mutableStateOf(PopularState())
         private set
 
+    var moviesState by mutableStateOf(MoviesState())
+        private set
+
     var showsState by mutableStateOf(ShowsState())
         private set
 
     fun onEvent(event: MoviesEvents) {
         when (event) {
             is MoviesEvents.FetchPopular -> fetchPopularMovies(event.lang)
+            is MoviesEvents.FetchMovies -> fetchMovies(event.lang)
             is MoviesEvents.FetchShows -> fetchTvShows(event.lang)
         }
     }
@@ -63,6 +66,30 @@ class MoviesViewModel(
                 popularState = popularState.copy(
                     error = "Unknown Error",
                     loading = false
+                )
+            }
+        }
+    }
+
+    private var fetchMoviesJob: Job? = null
+    private fun fetchMovies(lang: String) {
+        fetchMoviesJob = viewModelScope.launch {
+            moviesState = moviesState.copy(loading = true)
+            try {
+                moviesUseCases.fetchMovies(lang)
+                    .distinctUntilChanged()
+                    .cachedIn(viewModelScope)
+                    .collect { result ->
+                        moviesState = moviesState.copy(
+                            loading = false,
+                            success = MutableStateFlow(result.map { list -> list.toMovieDisplay() })
+                        )
+                    }
+
+            } catch (ioe: IOException) {
+                moviesState = moviesState.copy(
+                    loading = false,
+                    error = "Unknown Error",
                 )
             }
         }

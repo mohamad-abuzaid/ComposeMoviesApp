@@ -15,6 +15,12 @@ data class PopularState(
     val error: String? = null
 )
 
+data class MoviesState(
+    val loading: Boolean = false,
+    val success: MutableStateFlow<PagingData<MovieDisplay>>? = null,
+    val error: String? = null
+)
+
 data class ShowsState(
     val loading: Boolean = false,
     val success: MutableStateFlow<PagingData<ShowDisplay>>? = null,

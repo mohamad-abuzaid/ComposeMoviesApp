@@ -17,6 +17,11 @@ class MoviesUseCases(
             moviesRepository.fetchPopularMovies(lang)
         }
 
+    suspend fun fetchMovies(lang: String) =
+        withContext(dispatcher) {
+            moviesRepository.fetchMovies(lang)
+        }
+
     suspend fun fetchTvShows(lang: String) =
         withContext(dispatcher) {
             moviesRepository.fetchTvShows(lang)

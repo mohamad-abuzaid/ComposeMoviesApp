@@ -20,6 +20,9 @@ sealed class MainScreens {
     data object Home : MainScreens()
 
     @Serializable
+    data object Movies : MainScreens()
+
+    @Serializable
     data object Shows : MainScreens()
 
     @Serializable

@@ -112,7 +112,11 @@ fun HomeScreen(
                 horizontalArrangement = Arrangement.SpaceBetween
             ) {
                 Box(
-                    modifier = Modifier.wrapContentSize(),
+                    modifier = Modifier
+                        .wrapContentSize()
+                        .clickable {
+                            navController.navigate(MainScreens.Movies)
+                        },
                     contentAlignment = Alignment.TopEnd
                 ) {
                     Image(

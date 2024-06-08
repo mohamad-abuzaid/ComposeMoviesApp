@@ -13,6 +13,6 @@ import me.abuzaid.movies.domain.models.wrappers.NetworkCallResult
  */
 interface MoviesRepository {
     suspend fun fetchPopularMovies(lang: String): Flow<NetworkCallResult<List<MovieModel>, CallFailure>>
-
+    suspend fun fetchMovies(lang: String): Flow<PagingData<MovieModel>>
     suspend fun fetchTvShows(lang: String): Flow<PagingData<ShowModel>>
 }

@@ -16,6 +16,7 @@ class ApiServices(private val client: HttpClient) {
 
     companion object {
         private const val FETCH_POPULAR_MOVIES = "discover/movie"
+        private const val FETCH_MOVIES = "discover/movie"
         private const val FETCH_SHOWS = "discover/tv"
     }
 
@@ -26,6 +27,15 @@ class ApiServices(private val client: HttpClient) {
             parameter("language", lang)
             parameter("page", 1)
             parameter("sort_by", "popularity.desc")
+        }.body()
+
+    suspend fun fetchMovies(lang: String, page:Int): RemoteResponse<List<MovieRemote>> =
+        client.get(FETCH_MOVIES) {
+            parameter("include_adult", false)
+            parameter("include_video", false)
+            parameter("language", lang)
+            parameter("page", page)
+            parameter("sort_by", "vote_average.desc")
         }.body()
 
     suspend fun fetchTvShows(lang: String, page:Int): RemoteResponse<List<ShowRemote>> =
