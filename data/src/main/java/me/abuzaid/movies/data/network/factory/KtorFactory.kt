@@ -17,7 +17,9 @@ import io.ktor.http.ContentType
 import io.ktor.http.HttpHeaders
 import io.ktor.http.URLProtocol
 import io.ktor.http.contentType
+import io.ktor.http.path
 import io.ktor.serialization.kotlinx.json.json
+import kotlinx.serialization.ExperimentalSerializationApi
 import kotlinx.serialization.json.Json
 import timber.log.Timber
 
@@ -28,6 +30,7 @@ import timber.log.Timber
 object KtorClientFactory {
     private const val NETWORK_TIME_OUT = 6_000L
 
+    @OptIn(ExperimentalSerializationApi::class)
     fun getInstance(
         baseUrl: String,
         token: String
@@ -42,6 +45,7 @@ object KtorClientFactory {
                             useAlternativeNames = true
                             ignoreUnknownKeys = true
                             encodeDefaults = false
+                            explicitNulls = false
                         }
                     )
                 }
@@ -55,7 +59,7 @@ object KtorClientFactory {
                 install(Logging) {
                     logger = object : Logger {
                         override fun log(message: String) {
-                            Timber.v("Logger Ktor =>", message)
+                            Timber.v("Logger Ktor => $message")
                         }
                     }
                     level = LogLevel.ALL
@@ -75,9 +79,10 @@ object KtorClientFactory {
                 }
 
                 defaultRequest {
-                    host = baseUrl
                     url {
+                        host = baseUrl
                         protocol = URLProtocol.HTTPS
+                        path("3/")
                     }
 
                     bearerAuth(token = token)
