@@ -1,4 +1,4 @@
-![Compose-Movies-App](https://github.com/mohamad-abuzaid/KMP-Movies/assets/935514/c05ebaa2-f658-4d8d-a95f-0e6bd8c69e3a)
+![Compose-Movies-App](https://github.com/mohamad-abuzaid/ComposeMoviesApp/assets/935514/f4c411dd-2570-4d27-abe3-eb56e5f4ab9f)
 
 # Compose-Movies-App
 
