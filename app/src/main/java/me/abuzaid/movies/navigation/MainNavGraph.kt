@@ -8,6 +8,7 @@ import androidx.navigation.toRoute
 import me.abuzaid.movies.models.MovieDisplay
 import me.abuzaid.movies.models.ShowDisplay
 import me.abuzaid.movies.navigation.navtypes.parcelableType
+import me.abuzaid.movies.ui.screens.AnimationScreen
 import me.abuzaid.movies.ui.screens.HomeScreen
 import me.abuzaid.movies.ui.screens.LanguageSelectScreen
 import me.abuzaid.movies.ui.screens.MovieDetailsScreen
@@ -91,6 +92,10 @@ fun NavGraphBuilder.mainNavGraph(
             val show = entry.toRoute<MainScreens.ShowDetails>().show
 
             ShowDetailsScreen(navController, show)
+        }
+
+        composable<MainScreens.Animation> {
+            AnimationScreen(navController)
         }
     }
 }

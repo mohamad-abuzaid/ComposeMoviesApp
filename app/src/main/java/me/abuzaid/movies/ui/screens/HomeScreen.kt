@@ -36,6 +36,7 @@ import androidx.navigation.compose.rememberNavController
 import me.abuzaid.movies.R
 import me.abuzaid.movies.navigation.MainScreens
 import me.abuzaid.movies.ui.composables.MediaItem
+import me.abuzaid.movies.ui.composables.buttons.MainRoundedButton
 import me.abuzaid.movies.ui.composables.inputfields.InputTextField
 import me.abuzaid.movies.ui.composables.loaders.ErrorView
 import me.abuzaid.movies.ui.composables.loaders.LoadingIndicatorRotating
@@ -97,6 +98,15 @@ fun HomeScreen(
                 onSearch = { navController.navigate(MainScreens.Search(searchQuery.value)) }
             ) {
                 searchQuery.value = it
+            }
+
+            MainRoundedButton(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(horizontal = 30.dp),
+                text = stringResource(R.string.animation)
+            ) {
+                navController.navigate(MainScreens.Animation)
             }
 
             Spacer(modifier = Modifier.height(20.dp))

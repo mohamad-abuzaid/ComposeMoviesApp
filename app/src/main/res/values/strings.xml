@@ -29,6 +29,7 @@
     <string name="popular_title">Popular</string>
     <string name="movies">Movies</string>
     <string name="shows">Shows</string>
+    <string name="animation">Animations</string>
 
     <!--  MOVIE DETAILS-->
     <string name="votes_number">from %d users</string>

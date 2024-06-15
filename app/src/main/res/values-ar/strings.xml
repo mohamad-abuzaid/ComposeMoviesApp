@@ -27,6 +27,7 @@
     <string name="popular_title">الرائج</string>
     <string name="movies">أفلام</string>
     <string name="shows">مسلسلات</string>
+    <string name="animation">الحركة</string>
 
     <!--  MOVIE DETAILS-->
     <string name="votes_number">من %d مستخدم</string>

@@ -33,4 +33,7 @@ sealed class MainScreens {
 
     @Serializable
     data class ShowDetails(val show: ShowDisplay) : MainScreens()
+
+    @Serializable
+    data object Animation : MainScreens()
 }
