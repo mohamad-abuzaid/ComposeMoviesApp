@@ -42,8 +42,9 @@ dependencies {
 
     api(libs.timber)
 
-    testApi(libs.kotlin.test)
-    testApi(libs.kotlin.test.junit)
-    testApi(libs.coroutines.test)
-    testApi(libs.paging.common)
+    /****** Test Dependencies ******/
+    testImplementation(libs.kotlin.test)
+    testImplementation(libs.kotlin.test.junit)
+    testImplementation(libs.coroutines.test)
+    testImplementation(libs.paging.common)
 }
