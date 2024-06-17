@@ -70,4 +70,10 @@ dependencies {
     ksp(libs.room.compiler)
 
     implementation(libs.paging.room)
+
+    /****** Test Dependencies ******/
+    testImplementation(libs.kotlin.test)
+    testImplementation(libs.kotlin.test.junit)
+    testImplementation(libs.coroutines.test)
+    testImplementation(libs.paging.common)
 }
