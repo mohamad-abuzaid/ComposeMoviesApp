@@ -31,12 +31,10 @@ android {
 dependencies {
     api(libs.coroutines.core)
     api(libs.coroutines.android)
-    api(libs.coroutines.test)
 
     api(libs.koin.core)
     api(libs.koin.android)
     api(libs.koin.compose)
-    api(libs.kotlin.test)
 
     api(libs.ktor.client.serialization)
 
@@ -44,6 +42,9 @@ dependencies {
 
     api(libs.timber)
 
-    api(libs.kotlin.test)
-    api(libs.kotlin.test.junit)
+    /****** Test Dependencies ******/
+    testImplementation(libs.kotlin.test)
+    testImplementation(libs.kotlin.test.junit)
+    testImplementation(libs.coroutines.test)
+    testImplementation(libs.paging.common)
 }
