@@ -61,12 +61,19 @@ dependencies {
     implementation(libs.compose.ui)
     implementation(libs.compose.navigation)
     implementation(libs.compose.coil)
-    implementation(libs.paging.compose)
     implementation(libs.compose.material)
     implementation(libs.compose.material3)
     implementation(libs.compose.icons)
     implementation(libs.compose.icons.extended)
     implementation(libs.compose.ui.tooling.preview)
+    implementation(libs.paging.compose)
+
     debugImplementation(libs.compose.ui.tooling)
     debugImplementation(libs.compose.ui.test.manifest)
+
+    /****** Test Dependencies ******/
+    testImplementation(libs.kotlin.test)
+    testImplementation(libs.kotlin.test.junit)
+    testImplementation(libs.coroutines.test)
+    testImplementation(libs.paging.common)
 }
