@@ -1,10 +1,9 @@
 package me.abuzaid.movies.data.database.converters
 
 import androidx.room.TypeConverter
-import com.squareup.moshi.JsonAdapter
-import com.squareup.moshi.Moshi
-import com.squareup.moshi.Types
-import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
+import kotlinx.serialization.encodeToString
+import kotlinx.serialization.json.Json
+import timber.log.Timber
 
 /**
  * Created by "Mohamad Abuzaid" on 25/05/2024.
@@ -13,26 +12,37 @@ import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 class DataTypeConverter {
 
     @TypeConverter
-    fun fromMap(value: Map<String, String>?): String {
-        val moshi = Moshi.Builder()
-            .add(KotlinJsonAdapterFactory())
-            .build()
-        val type =
-            Types.newParameterizedType(Map::class.java, String::class.java, String::class.java)
-        val jsonAdapter: JsonAdapter<Map<String, String>> = moshi.adapter(type)
+    fun fromIntList(value: List<Int>?): String {
+        return value?.let { Json.encodeToString(it) } ?: ""
+    }
 
-        return jsonAdapter.toJson(value)
+    @TypeConverter
+    fun toIntList(value: String): List<Int>? {
+
+        return try {
+            Json.decodeFromString(value)
+        } catch (ex: Exception) {
+            Timber.tag("DataTypeConverter").e(ex)
+            null
+        }
+    }
+
+    /*************************/
+    /*************************/
+
+    @TypeConverter
+    fun fromMap(value: Map<String, String>?): String {
+        return value?.let { Json.encodeToString(it) } ?: ""
     }
 
     @TypeConverter
     fun toMap(value: String): Map<String, String>? {
-        val moshi = Moshi.Builder()
-            .add(KotlinJsonAdapterFactory())
-            .build()
-        val type =
-            Types.newParameterizedType(Map::class.java, String::class.java, String::class.java)
-        val jsonAdapter: JsonAdapter<Map<String, String>> = moshi.adapter(type)
 
-        return jsonAdapter.fromJson(value)
+        return try {
+            Json.decodeFromString(value)
+        } catch (ex: Exception) {
+            Timber.tag("DataTypeConverter").e(ex)
+            null
+        }
     }
 }
